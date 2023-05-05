@@ -1,14 +1,12 @@
-import { createContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import Home from "./pages/Home/Home";
-import { theme } from "./styles/theme";
+import Home from "./pages/Home";
 import Setting from "./pages/Setting";
+import { ThemeProvider } from "./contexts/themeContext";
 
-const ThemeContext = createContext({});
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +14,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <ThemeContext.Provider value={theme}>
+        <ThemeProvider>
           <Stack.Navigator
             initialRouteName="Home"
             screenOptions={{ headerShown: false }}>
@@ -32,7 +30,7 @@ export default function App() {
               )}
             </Stack.Screen>
           </Stack.Navigator>
-        </ThemeContext.Provider>
+        </ThemeProvider>
       </NavigationContainer>
     </SafeAreaProvider>
   );
