@@ -57,12 +57,3 @@ export const theme = {
     tablet: 768,
   },
 };
-
-// export const darkTheme = {
-//   ...theme,
-//   colors: {
-//     ...theme.colors,
-//     background: palette.black,
-//     foreground: palette.white,
-//   },
-// };

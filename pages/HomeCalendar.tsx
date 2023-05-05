@@ -1,16 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { theme } from "../styles/theme";
 import BasicTopnav from "../components/BasicTopNav";
 
-interface SettingProps {
+interface HomeCalendarProps {
   navigation: any;
 }
 
-const Setting = (props: SettingProps) => {
+const HomeCalendar = (props: HomeCalendarProps) => {
   const { navigation } = props;
   const insets = useSafeAreaInsets();
 
@@ -21,23 +21,30 @@ const Setting = (props: SettingProps) => {
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
         },
-        styles.setting,
+        styles.home,
       ]}>
       <BasicTopnav
-        firstIcon={
-          <MaterialIcons name="arrow-back-ios" size={24} color="black" />
+        firstIcon={<Feather name="search" size={24} color="black" />}
+        firstPress={() => navigation.navigate("Settings")}
+        lastPress={() => navigation.navigate("HomeList")}
+        lastIcon={
+          <MaterialCommunityIcons
+            name="cards-outline"
+            size={24}
+            color="black"
+          />
         }
-        firstPress={() => navigation.navigate("HomeCalendar")}
-        title="Settings"
       />
+      <View></View>
+      <View></View>
     </View>
   );
 };
 
-export default Setting;
+export default HomeCalendar;
 
 const styles = StyleSheet.create({
-  setting: {
+  home: {
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
