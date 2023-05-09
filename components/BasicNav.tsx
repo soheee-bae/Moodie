@@ -1,27 +1,36 @@
 import React, { ReactNode } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { IconButton } from "@react-native-material/core";
+import { theme } from "../styles/theme";
 
-interface BasicTopnavProps {
+interface BasicNavProps {
   firstIcon?: ReactNode;
   lastIcon?: ReactNode;
-  title?: string;
+  content?: string | ReactNode;
   firstPress?: () => void;
   lastPress?: () => void;
 }
 
-const BasicTopnav = (props: BasicTopnavProps) => {
-  const { firstIcon, lastIcon, title, firstPress, lastPress } = props;
+const BasicNav = (props: BasicNavProps) => {
+  const { firstIcon, lastIcon, content, firstPress, lastPress } = props;
   return (
     <View style={styles.header}>
-      <IconButton icon={firstIcon} onPress={firstPress} />
-      <Text>{title}</Text>
-      <IconButton icon={lastIcon} onPress={lastPress} />
+      <IconButton
+        icon={firstIcon}
+        onPress={firstPress}
+        color={theme.colors.background}
+      />
+      <Text>{content}</Text>
+      <IconButton
+        icon={lastIcon}
+        onPress={lastPress}
+        color={theme.colors.background}
+      />
     </View>
   );
 };
 
-export default BasicTopnav;
+export default BasicNav;
 
 const styles = StyleSheet.create({
   header: {

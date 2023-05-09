@@ -6,11 +6,11 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { theme } from "../styles/theme";
 import BasicTopnav from "../components/BasicNav";
 
-interface SettingProps {
+interface SearchProps {
   navigation: any;
 }
 
-const Setting = (props: SettingProps) => {
+const Search = (props: SearchProps) => {
   const { navigation } = props;
   const insets = useSafeAreaInsets();
 
@@ -21,23 +21,23 @@ const Setting = (props: SettingProps) => {
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
         },
-        styles.setting,
+        styles.search,
       ]}>
       <BasicTopnav
         firstIcon={
           <MaterialIcons name="arrow-back-ios" size={24} color="black" />
         }
         firstPress={() => navigation.navigate("HomeCalendar")}
-        content="Settings"
+        content="Search"
       />
     </View>
   );
 };
 
-export default Setting;
+export default Search;
 
 const styles = StyleSheet.create({
-  setting: {
+  search: {
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",

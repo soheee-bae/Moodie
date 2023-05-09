@@ -1,10 +1,17 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { IconButton } from "@react-native-material/core";
+import {
+  Feather,
+  MaterialCommunityIcons,
+  Ionicons,
+  AntDesign,
+} from "@expo/vector-icons";
 
 import { theme } from "../styles/theme";
-import BasicTopnav from "../components/BasicTopNav";
+import BasicNav from "../components/BasicNav";
+import AddButton from "../components/AddButton";
 
 interface HomeCalendarProps {
   navigation: any;
@@ -23,9 +30,9 @@ const HomeCalendar = (props: HomeCalendarProps) => {
         },
         styles.home,
       ]}>
-      <BasicTopnav
+      <BasicNav
         firstIcon={<Feather name="search" size={24} color="black" />}
-        firstPress={() => navigation.navigate("Settings")}
+        firstPress={() => navigation.navigate("Search")}
         lastPress={() => navigation.navigate("HomeList")}
         lastIcon={
           <MaterialCommunityIcons
@@ -36,7 +43,11 @@ const HomeCalendar = (props: HomeCalendarProps) => {
         }
       />
       <View></View>
-      <View></View>
+      <BasicNav
+        firstIcon={<Ionicons name="settings-outline" size={24} color="black" />}
+        firstPress={() => navigation.navigate("Settings")}
+        content={<AddButton onPress={() => navigation.navigate("AddCover")} />}
+      />
     </View>
   );
 };

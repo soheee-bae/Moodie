@@ -2,17 +2,17 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { IconButton } from "@react-native-material/core";
-import { Feather, Ionicons, AntDesign } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 
 import { theme } from "../styles/theme";
 import BasicNav from "../components/BasicNav";
 import AddButton from "../components/AddButton";
 
-interface HomeListProps {
+interface AddCoverProps {
   navigation: any;
 }
 
-const HomeList = (props: HomeListProps) => {
+const AddCover = (props: AddCoverProps) => {
   const { navigation } = props;
   const insets = useSafeAreaInsets();
 
@@ -23,28 +23,22 @@ const HomeList = (props: HomeListProps) => {
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
         },
-        styles.home,
+        styles.addCover,
       ]}>
-      <BasicNav
-        firstIcon={<Feather name="search" size={24} color="black" />}
-        lastIcon={<Feather name="calendar" size={24} color="black" />}
-        firstPress={() => navigation.navigate("Search")}
-        lastPress={() => navigation.navigate("HomeCalendar")}
-      />
       <View></View>
       <BasicNav
-        firstIcon={<Ionicons name="settings-outline" size={24} color="black" />}
-        firstPress={() => navigation.navigate("Settings")}
-        content={<AddButton onPress={() => navigation.navigate("AddCover")} />}
+        content={
+          <AddButton onPress={() => navigation.navigate("HomeCalendar")} />
+        }
       />
     </View>
   );
 };
 
-export default HomeList;
+export default AddCover;
 
 const styles = StyleSheet.create({
-  home: {
+  addCover: {
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
