@@ -16,9 +16,6 @@ interface ViewContextProps {
 
 function ViewContextProvider(props: ViewContextProps) {
   const { children } = props;
-
-  //HomeCalendar
-  //HomeList
   const [view, setView] = useState("HomeCalendar");
 
   return (

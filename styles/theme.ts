@@ -1,3 +1,5 @@
+import "./typography.css";
+
 const palette = {
   red: "#cc7161",
   orange: "#dc9770",
@@ -40,17 +42,10 @@ export const theme = {
     xl: 24,
     xxl: 40,
   },
-  typography: {
-    header: {
-      fontFamily: "Raleway",
-      fontSize: 36,
-      fontWeight: "bold",
-    },
-    body: {
-      fontFamily: "Merriweather",
-      fontSize: 16,
-    },
+  korean: {
   },
+  english: {},
+  typography: {},
   breakpoints: {
     smallPhone: 0,
     phone: 321,
