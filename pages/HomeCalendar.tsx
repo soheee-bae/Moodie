@@ -1,17 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { IconButton } from "@react-native-material/core";
-import {
-  Feather,
-  MaterialCommunityIcons,
-  Ionicons,
-  AntDesign,
-} from "@expo/vector-icons";
+import { Feather, MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 
 import { theme } from "../styles/theme";
 import BasicNav from "../components/BasicNav";
 import AddButton from "../components/AddButton";
+import ViewContext from "../contexts/ViewContext";
 
 interface HomeCalendarProps {
   navigation: any;
@@ -20,6 +15,7 @@ interface HomeCalendarProps {
 const HomeCalendar = (props: HomeCalendarProps) => {
   const { navigation } = props;
   const insets = useSafeAreaInsets();
+  const { setView } = useContext(ViewContext);
 
   return (
     <View
@@ -33,7 +29,10 @@ const HomeCalendar = (props: HomeCalendarProps) => {
       <BasicNav
         firstIcon={<Feather name="search" size={24} color="black" />}
         firstPress={() => navigation.navigate("Search")}
-        lastPress={() => navigation.navigate("HomeList")}
+        lastPress={() => {
+          setView("HomeList");
+          navigation.navigate("HomeList");
+        }}
         lastIcon={
           <MaterialCommunityIcons
             name="cards-outline"

@@ -4,6 +4,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+import { ViewContextProvider } from "./contexts/ViewContext";
+
 import HomeCalendar from "./pages/HomeCalendar";
 import HomeList from "./pages/HomeList";
 import Setting from "./pages/Setting";
@@ -16,7 +18,8 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
+      <ViewContextProvider>
+        <NavigationContainer>
           <Stack.Navigator
             initialRouteName="HomeCalendar"
             screenOptions={{ headerShown: false }}>
@@ -35,7 +38,8 @@ export default function App() {
               )}
             </Stack.Screen>
           </Stack.Navigator>
-      </NavigationContainer>
+        </NavigationContainer>
+      </ViewContextProvider>
     </SafeAreaProvider>
   );
 }
