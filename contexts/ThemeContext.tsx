@@ -1,19 +1,21 @@
 import { ReactNode, createContext, useState } from "react";
 import { theme } from "../styles/theme";
-type lagnuageType = "ko" | "el";
+type lagnuageType = "kor" | "eng";
 
 export type ThemeContextContent = {
   background: string;
   setBackground: (background: string) => void;
   language: lagnuageType;
   setLanguage: (language: lagnuageType) => void;
+  isEng: boolean;
 };
 
 const ThemeContext = createContext<ThemeContextContent>({
   background: "",
   setBackground: (background: string) => undefined,
-  language: "el",
+  language: "eng",
   setLanguage: (language: lagnuageType) => undefined,
+  isEng: true,
 });
 
 interface ThemeContextProps {
@@ -23,8 +25,9 @@ interface ThemeContextProps {
 function ThemeContextProvider(props: ThemeContextProps) {
   const { children } = props;
   const [background, setBackground] = useState(theme.background.white); //
-  const [language, setLanguage] = useState<lagnuageType>("el"); // ko, el
+  const [language, setLanguage] = useState<lagnuageType>("eng"); // kor, eng
 
+  const isEng = language === "eng";
   return (
     <ThemeContext.Provider
       value={{
@@ -32,6 +35,7 @@ function ThemeContextProvider(props: ThemeContextProps) {
         setBackground,
         language,
         setLanguage,
+        isEng,
       }}>
       {children}
     </ThemeContext.Provider>

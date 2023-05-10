@@ -9,21 +9,25 @@ import ThemeContext from "../contexts/ThemeContext";
 import SettingItem from "../components/SettingItem";
 
 type SettingData = {
-  name: string;
+  engname?: string;
+  korname?: string;
   link: string;
 };
 
 const settings: SettingData[] = [
   {
-    name: "Font Style",
+    engname: "Font Style",
+    korname: "글 스타일",
     link: "FontSetting",
   },
   {
-    name: "Background",
+    engname: "Background",
+    korname: "배경색",
     link: "BackgroundSetting",
   },
   {
-    name: "Language",
+    engname: "Language",
+    korname: "언어",
     link: "LanguageSetting",
   },
 ];
@@ -36,7 +40,7 @@ const Setting = (props: SettingProps) => {
   const { navigation } = props;
   const insets = useSafeAreaInsets();
   const { view } = useContext(ViewContext);
-  const { background } = useContext(ThemeContext);
+  const { background, isEng } = useContext(ThemeContext);
 
   return (
     <View
@@ -58,12 +62,12 @@ const Setting = (props: SettingProps) => {
         data={settings}
         renderItem={({ item }) => (
           <SettingItem
-            name={item.name}
+            name={(isEng ? item.engname : item.korname) || ""}
             link={item.link}
             navigation={navigation}
           />
         )}
-        keyExtractor={(item) => item.name}
+        keyExtractor={(item) => item.link}
       />
     </View>
   );

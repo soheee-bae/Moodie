@@ -15,7 +15,7 @@ const Search = (props: SearchProps) => {
   const { navigation } = props;
   const insets = useSafeAreaInsets();
   const { view } = useContext(ViewContext);
-  const { background } = useContext(ThemeContext);
+  const { background, isEng } = useContext(ThemeContext);
 
   return (
     <View
@@ -31,7 +31,7 @@ const Search = (props: SearchProps) => {
           <MaterialIcons name="arrow-back-ios" size={24} color="black" />
         }
         firstPress={() => navigation.navigate(view)}
-        content="Search"
+        content={isEng ? "Search" : "검색"}
       />
     </View>
   );

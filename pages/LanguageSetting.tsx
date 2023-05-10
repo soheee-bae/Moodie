@@ -7,11 +7,11 @@ import BasicTopnav from "../components/BasicNav";
 import ThemeContext from "../contexts/ThemeContext";
 import BackgroundList from "../components/BackgroundList";
 
-interface BackgroundSettingProps {
+interface LanguageSettingProps {
   navigation: any;
 }
 
-const BackgroundSetting = (props: BackgroundSettingProps) => {
+const BackgroundSetting = (props: LanguageSettingProps) => {
   const { navigation } = props;
   const insets = useSafeAreaInsets();
   const { background, isEng } = useContext(ThemeContext);
@@ -22,14 +22,14 @@ const BackgroundSetting = (props: BackgroundSettingProps) => {
         {
           paddingTop: insets.top,
         },
-        styles(background).backgroundSetting,
+        styles(background).languageSetting,
       ]}>
       <BasicTopnav
-              firstIcon={
-                  <MaterialIcons name="arrow-back-ios" size={24} color="black" />
-              }
-              firstPress={() => navigation.navigate("Settings")}
-              content={isEng ? "Background" : "배경색"}
+        firstIcon={
+          <MaterialIcons name="arrow-back-ios" size={24} color="black" />
+        }
+        firstPress={() => navigation.navigate("Settings")}
+        content={isEng ? "Language" : "언어"}
       />
       <View style={{ height: "35%", width: "100%" }}>
         <Text>Preview</Text>
@@ -45,7 +45,7 @@ export default BackgroundSetting;
 
 const styles = (background: string) =>
   StyleSheet.create({
-    backgroundSetting: {
+    languageSetting: {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
