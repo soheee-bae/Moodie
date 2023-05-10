@@ -1,6 +1,5 @@
-import "./typography.css";
-
 const palette = {
+  // default
   red: "#cc7161",
   orange: "#dc9770",
   amber: "#e8b67f",
@@ -15,6 +14,34 @@ const palette = {
   lightBlack: "#444444",
   white: "#ffffff",
   lightWhite: "#eeeeee",
+
+  // backgrounds
+  whiteBackground: "#EEEEEE",
+  lightPurpleBackground: "#F4F1F9",
+  lightOrangeBackground: "#FAEBD5",
+  lightBlueBackground: "#E4EDF7",
+  purpleBackground: "#E6DFF1",
+  redBackground: "#F1DED3",
+  yellowBackground: "#F3E4B0",
+  lightGreenBackground: "#DCD8AF",
+  greenBackground: "#C1C1A6",
+  blueBackground: "#BDD4EB",
+  lightBrownBackground: "#DDD0BE",
+  brownBackground: "#DDC6B4",
+
+  //highlights
+  whiteHighlight: "#E1E1E1",
+  lightPurpleHighlight: "#E6DFF1",
+  lightOrangeHighlight: "#F4D7A7",
+  lightBlueHighlight: "#D0E1F1",
+  purpleHighlight: "#D8CDE9",
+  redHighlight: "#E5C0AD",
+  yellowHighlight: "#ECD584",
+  lightGreenHighlight: "#CCC78C",
+  greenHighlight: "#ACAC88",
+  blueHighlight: "#A9C7E5",
+  lightBrownHighlight: "#CCB89D",
+  brownHighlight: "#D1B199",
 };
 
 export const theme = {
@@ -33,6 +60,34 @@ export const theme = {
     lightBlack: palette.lightBlack,
     white: palette.white,
   },
+  background: {
+    white: palette.whiteBackground,
+    lightPurple: palette.lightPurpleBackground,
+    lightOrange: palette.lightOrangeBackground,
+    lightBlue: palette.lightBlueBackground,
+    purple: palette.purpleBackground,
+    red: palette.redBackground,
+    yellow: palette.yellowBackground,
+    lightGreen: palette.lightGreenBackground,
+    green: palette.greenBackground,
+    blue: palette.blueBackground,
+    lightBrown: palette.lightBrownBackground,
+    brown: palette.brownBackground,
+  },
+  highlights: {
+    white: palette.whiteHighlight,
+    lightPurple: palette.lightPurpleHighlight,
+    lightOrange: palette.lightOrangeHighlight,
+    lightBlue: palette.lightBlueHighlight,
+    purple: palette.purpleHighlight,
+    red: palette.redHighlight,
+    yellow: palette.yellowHighlight,
+    lightGreen: palette.lightGreenHighlight,
+    green: palette.greenHighlight,
+    blue: palette.blueHighlight,
+    lightBrown: palette.lightBrownHighlight,
+    brown: palette.brownHighlight,
+  },
   spacing: {
     xxs: 4,
     xs: 8,
@@ -42,8 +97,7 @@ export const theme = {
     xl: 24,
     xxl: 40,
   },
-  korean: {
-  },
+  korean: {},
   english: {},
   typography: {},
   breakpoints: {
