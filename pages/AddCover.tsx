@@ -8,6 +8,7 @@ import { theme } from "../styles/theme";
 import BasicNav from "../components/BasicNav";
 import AddButton from "../components/AddButton";
 import ViewContext from "../contexts/ViewContext";
+import ThemeContext from "../contexts/ThemeContext";
 
 interface AddCoverProps {
   navigation: any;
@@ -17,6 +18,7 @@ const AddCover = (props: AddCoverProps) => {
   const { navigation } = props;
   const insets = useSafeAreaInsets();
   const { view } = useContext(ViewContext);
+  const { background } = useContext(ThemeContext);
 
   return (
     <View
@@ -25,7 +27,7 @@ const AddCover = (props: AddCoverProps) => {
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
         },
-        styles.addCover,
+        styles(background).addCover,
       ]}>
       <View></View>
       <BasicNav
@@ -37,11 +39,12 @@ const AddCover = (props: AddCoverProps) => {
 
 export default AddCover;
 
-const styles = StyleSheet.create({
-  addCover: {
-    flex: 1,
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: theme.colors.background,
-  },
-});
+const styles = (background: string) =>
+  StyleSheet.create({
+    addCover: {
+      flex: 1,
+      justifyContent: "space-between",
+      alignItems: "center",
+      backgroundColor: background,
+    },
+  });

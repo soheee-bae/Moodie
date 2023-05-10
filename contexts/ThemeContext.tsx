@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useState } from "react";
+import { theme } from "../styles/theme";
 type lagnuageType = "ko" | "el";
 
 export type ThemeContextContent = {
@@ -21,7 +22,7 @@ interface ThemeContextProps {
 
 function ThemeContextProvider(props: ThemeContextProps) {
   const { children } = props;
-  const [background, setBackground] = useState("md"); //
+  const [background, setBackground] = useState(theme.background.white); //
   const [language, setLanguage] = useState<lagnuageType>("el"); // ko, el
 
   return (

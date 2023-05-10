@@ -17,9 +17,9 @@ const palette = {
 
   // backgrounds
   whiteBackground: "#EEEEEE",
-  lightPurpleBackground: "#F4F1F9",
   lightOrangeBackground: "#FAEBD5",
   lightBlueBackground: "#E4EDF7",
+  lightPurpleBackground: "#F4F1F9",
   purpleBackground: "#E6DFF1",
   redBackground: "#F1DED3",
   yellowBackground: "#F3E4B0",
@@ -62,16 +62,16 @@ export const theme = {
   },
   background: {
     white: palette.whiteBackground,
-    lightPurple: palette.lightPurpleBackground,
-    lightOrange: palette.lightOrangeBackground,
     lightBlue: palette.lightBlueBackground,
-    purple: palette.purpleBackground,
-    red: palette.redBackground,
     yellow: palette.yellowBackground,
-    lightGreen: palette.lightGreenBackground,
-    green: palette.greenBackground,
     blue: palette.blueBackground,
+    lightPurple: palette.lightPurpleBackground,
+    purple: palette.purpleBackground,
+    lightGreen: palette.lightGreenBackground,
     lightBrown: palette.lightBrownBackground,
+    lightOrange: palette.lightOrangeBackground,
+    red: palette.redBackground,
+    green: palette.greenBackground,
     brown: palette.brownBackground,
   },
   highlights: {

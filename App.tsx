@@ -12,6 +12,7 @@ import Setting from "./pages/Setting";
 import Search from "./pages/Search";
 import AddCover from "./pages/AddCover";
 import { ThemeContextProvider } from "./contexts/ThemeContext";
+import BackgroundSetting from "./pages/BackgroundSetting";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -39,6 +40,10 @@ export default function App() {
                     <Stack.Screen name="Settings" component={Setting} />
                     <Stack.Screen name="Search" component={Search} />
                     <Stack.Screen name="AddCover" component={AddCover} />
+                    <Stack.Screen
+                      name="BackgroundSetting"
+                      component={BackgroundSetting}
+                    />
                   </Tab.Navigator>
                 )}
               </Stack.Screen>

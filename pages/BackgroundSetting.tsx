@@ -1,20 +1,19 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet, Text, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import BasicTopnav from "../components/BasicNav";
-import ViewContext from "../contexts/ViewContext";
 import ThemeContext from "../contexts/ThemeContext";
+import BackgroundList from "../components/BackgroundList";
 
-interface SearchProps {
+interface BackgroundSettingProps {
   navigation: any;
 }
 
-const Search = (props: SearchProps) => {
+const BackgroundSetting = (props: BackgroundSettingProps) => {
   const { navigation } = props;
   const insets = useSafeAreaInsets();
-  const { view } = useContext(ViewContext);
   const { background } = useContext(ThemeContext);
 
   return (
@@ -22,29 +21,36 @@ const Search = (props: SearchProps) => {
       style={[
         {
           paddingTop: insets.top,
-          paddingBottom: insets.bottom,
         },
-        styles(background).search,
+        styles(background).backgroundSetting,
       ]}>
       <BasicTopnav
         firstIcon={
           <MaterialIcons name="arrow-back-ios" size={24} color="black" />
         }
-        firstPress={() => navigation.navigate(view)}
-        content="Search"
+        firstPress={() => navigation.navigate("Settings")}
+        content="Background"
       />
+      <View style={{ height: "35%", width: "100%" }}>
+        <Text>Preview</Text>
+      </View>
+      <View style={{ height: "65%", width: "100%" }}>
+        <BackgroundList />
+      </View>
     </View>
   );
 };
 
-export default Search;
+export default BackgroundSetting;
 
 const styles = (background: string) =>
   StyleSheet.create({
-    search: {
-      flex: 1,
+    backgroundSetting: {
+      display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
+      flexDirection: "column",
       backgroundColor: background,
+      width: "100%",
     },
   });

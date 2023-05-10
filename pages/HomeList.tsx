@@ -8,6 +8,7 @@ import { theme } from "../styles/theme";
 import BasicNav from "../components/BasicNav";
 import AddButton from "../components/AddButton";
 import ViewContext from "../contexts/ViewContext";
+import ThemeContext from "../contexts/ThemeContext";
 
 interface HomeListProps {
   navigation: any;
@@ -17,6 +18,7 @@ const HomeList = (props: HomeListProps) => {
   const { navigation } = props;
   const insets = useSafeAreaInsets();
   const { setView } = useContext(ViewContext);
+  const { background } = useContext(ThemeContext);
 
   return (
     <View
@@ -25,7 +27,7 @@ const HomeList = (props: HomeListProps) => {
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
         },
-        styles.home,
+        styles(background).home,
       ]}>
       <BasicNav
         firstIcon={<Feather name="search" size={24} color="black" />}
@@ -48,11 +50,12 @@ const HomeList = (props: HomeListProps) => {
 
 export default HomeList;
 
-const styles = StyleSheet.create({
-  home: {
-    flex: 1,
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: theme.colors.background,
-  },
-});
+const styles = (background: string) =>
+  StyleSheet.create({
+    home: {
+      flex: 1,
+      justifyContent: "space-between",
+      alignItems: "center",
+      backgroundColor: background,
+    },
+  });

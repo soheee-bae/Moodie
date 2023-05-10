@@ -1,11 +1,32 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MaterialIcons } from "@expo/vector-icons";
 
-import { theme } from "../styles/theme";
 import BasicTopnav from "../components/BasicNav";
 import ViewContext from "../contexts/ViewContext";
+import ThemeContext from "../contexts/ThemeContext";
+import SettingItem from "../components/SettingItem";
+
+type SettingData = {
+  name: string;
+  link: string;
+};
+
+const settings: SettingData[] = [
+  {
+    name: "Font Style",
+    link: "FontSetting",
+  },
+  {
+    name: "Background",
+    link: "BackgroundSetting",
+  },
+  {
+    name: "Language",
+    link: "LanguageSetting",
+  },
+];
 
 interface SettingProps {
   navigation: any;
@@ -15,6 +36,7 @@ const Setting = (props: SettingProps) => {
   const { navigation } = props;
   const insets = useSafeAreaInsets();
   const { view } = useContext(ViewContext);
+  const { background } = useContext(ThemeContext);
 
   return (
     <View
@@ -23,7 +45,7 @@ const Setting = (props: SettingProps) => {
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
         },
-        styles.setting,
+        styles(background).setting,
       ]}>
       <BasicTopnav
         firstIcon={
@@ -32,17 +54,32 @@ const Setting = (props: SettingProps) => {
         firstPress={() => navigation.navigate(view)}
         content="Settings"
       />
+      <FlatList
+        data={settings}
+        renderItem={({ item }) => (
+          <SettingItem
+            name={item.name}
+            link={item.link}
+            navigation={navigation}
+          />
+        )}
+        keyExtractor={(item) => item.name}
+      />
     </View>
   );
 };
 
 export default Setting;
 
-const styles = StyleSheet.create({
-  setting: {
-    flex: 1,
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: theme.colors.background,
-  },
-});
+const styles = (background: string) =>
+  StyleSheet.create({
+    setting: {
+      flex: 1,
+      justifyContent: "flex-start",
+      alignItems: "center",
+      backgroundColor: background,
+    },
+    content: {
+      backgroundColor: "red",
+    },
+  });

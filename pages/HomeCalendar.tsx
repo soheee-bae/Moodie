@@ -7,6 +7,7 @@ import { theme } from "../styles/theme";
 import BasicNav from "../components/BasicNav";
 import AddButton from "../components/AddButton";
 import ViewContext from "../contexts/ViewContext";
+import ThemeContext from "../contexts/ThemeContext";
 
 interface HomeCalendarProps {
   navigation: any;
@@ -16,6 +17,7 @@ const HomeCalendar = (props: HomeCalendarProps) => {
   const { navigation } = props;
   const insets = useSafeAreaInsets();
   const { setView } = useContext(ViewContext);
+  const { background } = useContext(ThemeContext);
 
   return (
     <View
@@ -24,7 +26,7 @@ const HomeCalendar = (props: HomeCalendarProps) => {
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
         },
-        styles.home,
+        styles(background).home,
       ]}>
       <BasicNav
         firstIcon={<Feather name="search" size={24} color="black" />}
@@ -53,11 +55,12 @@ const HomeCalendar = (props: HomeCalendarProps) => {
 
 export default HomeCalendar;
 
-const styles = StyleSheet.create({
-  home: {
-    flex: 1,
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: theme.colors.background,
-  },
-});
+const styles = (background: string) =>
+  StyleSheet.create({
+    home: {
+      flex: 1,
+      justifyContent: "space-between",
+      alignItems: "center",
+      backgroundColor: background,
+    },
+  });
