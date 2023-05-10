@@ -13,6 +13,7 @@ import Search from "./pages/Search";
 import AddCover from "./pages/AddCover";
 import { ThemeContextProvider } from "./contexts/ThemeContext";
 import BackgroundSetting from "./pages/BackgroundSetting";
+import LanguageSetting from "./pages/LanguageSetting";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -43,6 +44,10 @@ export default function App() {
                     <Stack.Screen
                       name="BackgroundSetting"
                       component={BackgroundSetting}
+                    />
+                    <Stack.Screen
+                      name="LanguageSetting"
+                      component={LanguageSetting}
                     />
                   </Tab.Navigator>
                 )}

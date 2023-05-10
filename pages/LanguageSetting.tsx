@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, StyleSheet, Text, ScrollView } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -11,10 +11,10 @@ interface LanguageSettingProps {
   navigation: any;
 }
 
-const BackgroundSetting = (props: LanguageSettingProps) => {
+const LanguageSetting = (props: LanguageSettingProps) => {
   const { navigation } = props;
   const insets = useSafeAreaInsets();
-  const { background, isEng } = useContext(ThemeContext);
+  const { background, isEng, setLanguage } = useContext(ThemeContext);
 
   return (
     <View
@@ -31,17 +31,25 @@ const BackgroundSetting = (props: LanguageSettingProps) => {
         firstPress={() => navigation.navigate("Settings")}
         content={isEng ? "Language" : "언어"}
       />
-      <View style={{ height: "35%", width: "100%" }}>
-        <Text>Preview</Text>
-      </View>
-      <View style={{ height: "65%", width: "100%" }}>
-        <BackgroundList />
+      <View>
+        <TouchableOpacity
+          onPress={() => {
+            setLanguage("kor");
+          }}>
+          <Text>{isEng ? "Korean" : "한국어"}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            setLanguage("eng");
+          }}>
+          <Text>{isEng ? "English" : "영어"}</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
-export default BackgroundSetting;
+export default LanguageSetting;
 
 const styles = (background: string) =>
   StyleSheet.create({

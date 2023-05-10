@@ -56,7 +56,7 @@ const Setting = (props: SettingProps) => {
           <MaterialIcons name="arrow-back-ios" size={24} color="black" />
         }
         firstPress={() => navigation.navigate(view)}
-        content="Settings"
+        content={isEng ? "Settings" : "설정"}
       />
       <FlatList
         data={settings}
