@@ -61,16 +61,21 @@ export const theme = {
   },
   background: {
     white: palette.whiteBackground,
-    lightBlue: palette.lightBlueBackground,
-    yellow: palette.yellowBackground,
-    blue: palette.blueBackground,
     lightPurple: palette.lightPurpleBackground,
-    purple: palette.purpleBackground,
-    lightGreen: palette.lightGreenBackground,
-    lightBrown: palette.lightBrownBackground,
     lightOrange: palette.lightOrangeBackground,
+
+    lightBlue: palette.lightBlueBackground,
+    purple: palette.purpleBackground,
+
     red: palette.redBackground,
+
+    yellow: palette.yellowBackground,
+    lightGreen: palette.lightGreenBackground,
     green: palette.greenBackground,
+
+    blue: palette.blueBackground,
+    lightBrown: palette.lightBrownBackground,
+
     brown: palette.brownBackground,
   },
   highlights: {
