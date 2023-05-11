@@ -63,19 +63,14 @@ export const theme = {
     white: palette.whiteBackground,
     lightPurple: palette.lightPurpleBackground,
     lightOrange: palette.lightOrangeBackground,
-
     lightBlue: palette.lightBlueBackground,
     purple: palette.purpleBackground,
-
     red: palette.redBackground,
-
     yellow: palette.yellowBackground,
     lightGreen: palette.lightGreenBackground,
     green: palette.greenBackground,
-
     blue: palette.blueBackground,
     lightBrown: palette.lightBrownBackground,
-
     brown: palette.brownBackground,
   },
   highlights: {

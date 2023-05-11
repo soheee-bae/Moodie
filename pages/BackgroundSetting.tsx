@@ -7,6 +7,7 @@ import BasicTopnav from "../components/BasicNav";
 import BackgroundList from "../components/BackgroundList";
 import ThemeContext from "../contexts/ThemeContext";
 import { theme } from "../styles/theme";
+import BackgroundPreview from "../components/BackgroundPreview";
 
 interface BackgroundSettingProps {
   navigation: any;
@@ -37,7 +38,7 @@ const BackgroundSetting = (props: BackgroundSettingProps) => {
         content={isEng ? "Background" : "배경색"}
       />
       <View style={styles(background).preview}>
-        <Text>Preview</Text>
+        <BackgroundPreview />
       </View>
       <View style={styles(background).backgroundList}>
         <BackgroundList />

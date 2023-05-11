@@ -8,6 +8,7 @@ export type ThemeContextContent = {
   setBackground: (background: string) => void;
   language: languageType;
   setLanguage: (language: languageType) => void;
+  highlightColor: string;
   isEng: boolean;
 };
 
@@ -16,8 +17,12 @@ const ThemeContext = createContext<ThemeContextContent>({
   setBackground: (background: string) => undefined,
   language: "eng",
   setLanguage: (language: languageType) => undefined,
+  highlightColor: "",
   isEng: true,
 });
+
+const highlights = Object.values(theme.highlights);
+const backgrounds = Object.values(theme.background);
 
 interface ThemeContextProps {
   children: ReactNode;
@@ -28,6 +33,9 @@ function ThemeContextProvider(props: ThemeContextProps) {
   const [background, setBackground] = useState(theme.background.white); //
   const [language, setLanguage] = useState<languageType>("eng"); // kor, eng
 
+  const index = backgrounds.indexOf(background);
+  const highlightColor = highlights[index];
+
   const isEng = language === "eng";
   return (
     <ThemeContext.Provider
@@ -36,6 +44,7 @@ function ThemeContextProvider(props: ThemeContextProps) {
         setBackground,
         language,
         setLanguage,
+        highlightColor,
         isEng,
       }}>
       {children}
