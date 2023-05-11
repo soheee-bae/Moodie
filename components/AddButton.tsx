@@ -22,7 +22,13 @@ const AddButton = (props: AddButtonProps) => {
   return (
     <View>
       <IconButton
-        icon={<AntDesign name="pluscircleo" size={49} color="black" />}
+        icon={
+          <AntDesign
+            name="pluscircleo"
+            size={49}
+            color={theme.colors.lightBlack}
+          />
+        }
         onPress={handlePress}
         color={theme.colors.background}
       />

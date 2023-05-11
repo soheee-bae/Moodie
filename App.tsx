@@ -1,17 +1,16 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { StyleSheet } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { ViewContextProvider } from "./contexts/ViewContext";
+import { ThemeContextProvider } from "./contexts/ThemeContext";
 
 import HomeCalendar from "./pages/HomeCalendar";
 import HomeList from "./pages/HomeList";
 import Setting from "./pages/Setting";
 import Search from "./pages/Search";
 import AddCover from "./pages/AddCover";
-import { ThemeContextProvider } from "./contexts/ThemeContext";
 import BackgroundSetting from "./pages/BackgroundSetting";
 import LanguageSetting from "./pages/LanguageSetting";
 

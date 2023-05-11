@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import BasicTopnav from "../components/BasicNav";
 import ViewContext from "../contexts/ViewContext";
 import ThemeContext from "../contexts/ThemeContext";
+import { theme } from "../styles/theme";
 
 interface SearchProps {
   navigation: any;
@@ -14,6 +15,7 @@ interface SearchProps {
 const Search = (props: SearchProps) => {
   const { navigation } = props;
   const insets = useSafeAreaInsets();
+
   const { view } = useContext(ViewContext);
   const { background, isEng } = useContext(ThemeContext);
 
@@ -24,11 +26,15 @@ const Search = (props: SearchProps) => {
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
         },
-        styles(background).search,
+        styles(background).searchContainer,
       ]}>
       <BasicTopnav
         firstIcon={
-          <MaterialIcons name="arrow-back-ios" size={24} color="black" />
+          <MaterialIcons
+            name="arrow-back-ios"
+            size={20}
+            color={theme.colors.lightBlack}
+          />
         }
         firstPress={() => navigation.navigate(view)}
         content={isEng ? "Search" : "검색"}
@@ -41,10 +47,9 @@ export default Search;
 
 const styles = (background: string) =>
   StyleSheet.create({
-    search: {
+    searchContainer: {
       flex: 1,
-      justifyContent: "space-between",
-      alignItems: "center",
       backgroundColor: background,
+      width: "100%",
     },
   });

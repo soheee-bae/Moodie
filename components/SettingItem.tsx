@@ -1,15 +1,18 @@
-import React from "react";
-import { StyleSheet, TouchableOpacity, Text } from "react-native";
+import React, { ReactNode } from "react";
+import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+
+import { theme } from "../styles/theme";
 
 interface SettingItemProps {
   name: string;
   link: string;
   navigation: any;
+  icon: ReactNode;
 }
 
 const SettingItem = (props: SettingItemProps) => {
-  const { name, link, navigation } = props;
+  const { name, link, navigation, icon } = props;
 
   const handlePress = (link: string) => {
     navigation.navigate(link);
@@ -21,8 +24,15 @@ const SettingItem = (props: SettingItemProps) => {
         handlePress(link);
       }}
       style={styles.settingItem}>
-      <Text style={styles.label}>{name}</Text>
-      <MaterialIcons name="arrow-forward-ios" size={24} color="black" />
+      <View style={styles.content}>
+        <Text>{icon}</Text>
+        <Text style={styles.name}>{name}</Text>
+      </View>
+      <MaterialIcons
+        name="arrow-forward-ios"
+        size={15}
+        color={theme.colors.lightBlack}
+      />
     </TouchableOpacity>
   );
 };
@@ -31,12 +41,19 @@ export default SettingItem;
 
 const styles = StyleSheet.create({
   settingItem: {
-    flex: 1,
-    backgroundColor: "red",
-    width: "100%",
+    display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+    maxWidth: "100%",
     alignItems: "center",
+    paddingHorizontal: 22,
+    paddingVertical: 21,
   },
-  label: {},
+  content: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 17,
+  },
+  name: {},
 });

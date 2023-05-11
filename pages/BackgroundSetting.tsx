@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { View, StyleSheet, Text, ScrollView } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import BasicTopnav from "../components/BasicNav";
-import ThemeContext from "../contexts/ThemeContext";
 import BackgroundList from "../components/BackgroundList";
+import ThemeContext from "../contexts/ThemeContext";
 
 interface BackgroundSettingProps {
   navigation: any;
@@ -25,11 +25,11 @@ const BackgroundSetting = (props: BackgroundSettingProps) => {
         styles(background).backgroundSetting,
       ]}>
       <BasicTopnav
-              firstIcon={
-                  <MaterialIcons name="arrow-back-ios" size={24} color="black" />
-              }
-              firstPress={() => navigation.navigate("Settings")}
-              content={isEng ? "Background" : "배경색"}
+        firstIcon={
+          <MaterialIcons name="arrow-back-ios" size={24} color="black" />
+        }
+        firstPress={() => navigation.navigate("Settings")}
+        content={isEng ? "Background" : "배경색"}
       />
       <View style={{ height: "35%", width: "100%" }}>
         <Text>Preview</Text>

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+
 import { theme } from "../styles/theme";
 import ThemeContext from "../contexts/ThemeContext";
 
@@ -17,13 +18,12 @@ const BackgroundList = () => {
           onPress={() => {
             setBackground(background);
           }}
-          style={{
-            backgroundColor: background,
-            width: "34%",
-            height: "25%",
-            borderWidth: 0.5,
-            borderColor: "white",
-          }}
+          style={[
+            {
+              backgroundColor: background,
+            },
+            styles.background,
+          ]}
         />
       ))}
     </ScrollView>
@@ -44,5 +44,11 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     flex: 1,
     flexDirection: "column",
+  },
+  background: {
+    width: "34%",
+    height: "25%",
+    borderWidth: 0.5,
+    borderColor: "white",
   },
 });

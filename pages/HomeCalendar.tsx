@@ -3,11 +3,12 @@ import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Feather, MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 
-import { theme } from "../styles/theme";
 import BasicNav from "../components/BasicNav";
 import AddButton from "../components/AddButton";
 import ViewContext from "../contexts/ViewContext";
 import ThemeContext from "../contexts/ThemeContext";
+
+import { theme } from "../styles/theme";
 
 interface HomeCalendarProps {
   navigation: any;
@@ -29,7 +30,9 @@ const HomeCalendar = (props: HomeCalendarProps) => {
         styles(background).home,
       ]}>
       <BasicNav
-        firstIcon={<Feather name="search" size={24} color="black" />}
+        firstIcon={
+          <Feather name="search" size={24} color={theme.colors.lightBlack} />
+        }
         firstPress={() => navigation.navigate("Search")}
         lastPress={() => {
           setView("HomeList");
@@ -39,13 +42,19 @@ const HomeCalendar = (props: HomeCalendarProps) => {
           <MaterialCommunityIcons
             name="cards-outline"
             size={24}
-            color="black"
+            color={theme.colors.lightBlack}
           />
         }
       />
       <View></View>
       <BasicNav
-        firstIcon={<Ionicons name="settings-outline" size={24} color="black" />}
+        firstIcon={
+          <Ionicons
+            name="settings-outline"
+            size={24}
+            color={theme.colors.lightBlack}
+          />
+        }
         firstPress={() => navigation.navigate("Settings")}
         content={<AddButton onPress={() => navigation.navigate("AddCover")} />}
       />

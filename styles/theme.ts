@@ -9,7 +9,6 @@ const palette = {
   basil: "#638a7e",
   teal: "#529ead",
   navy: "#40768c",
-
   black: "#000000",
   lightBlack: "#444444",
   white: "#ffffff",

@@ -1,11 +1,31 @@
 import React, { useContext } from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { View, StyleSheet, FlatList } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MaterialIcons } from "@expo/vector-icons";
 
+import LanguageList from "../components/LanguageList";
 import BasicTopnav from "../components/BasicNav";
-import ThemeContext from "../contexts/ThemeContext";
-import BackgroundList from "../components/BackgroundList";
+import ThemeContext, { languageType } from "../contexts/ThemeContext";
+import { theme } from "../styles/theme";
+
+type LanguageData = {
+  value: languageType;
+  engLabel?: string;
+  korLabel?: string;
+};
+
+const languages: LanguageData[] = [
+  {
+    value: "eng",
+    engLabel: "English",
+    korLabel: "영어",
+  },
+  {
+    value: "kor",
+    engLabel: "Korean",
+    korLabel: "한국어",
+  },
+];
 
 interface LanguageSettingProps {
   navigation: any;
@@ -14,7 +34,7 @@ interface LanguageSettingProps {
 const LanguageSetting = (props: LanguageSettingProps) => {
   const { navigation } = props;
   const insets = useSafeAreaInsets();
-  const { background, isEng, setLanguage } = useContext(ThemeContext);
+  const { background, isEng } = useContext(ThemeContext);
 
   return (
     <View
@@ -22,29 +42,29 @@ const LanguageSetting = (props: LanguageSettingProps) => {
         {
           paddingTop: insets.top,
         },
-        styles(background).languageSetting,
+        styles(background).languageSettingContainer,
       ]}>
       <BasicTopnav
         firstIcon={
-          <MaterialIcons name="arrow-back-ios" size={24} color="black" />
+          <MaterialIcons
+            name="arrow-back-ios"
+            size={20}
+            color={theme.colors.lightBlack}
+          />
         }
         firstPress={() => navigation.navigate("Settings")}
         content={isEng ? "Language" : "언어"}
       />
-      <View>
-        <TouchableOpacity
-          onPress={() => {
-            setLanguage("kor");
-          }}>
-          <Text>{isEng ? "Korean" : "한국어"}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            setLanguage("eng");
-          }}>
-          <Text>{isEng ? "English" : "영어"}</Text>
-        </TouchableOpacity>
-      </View>
+      <FlatList
+        data={languages}
+        renderItem={({ item }) => (
+          <LanguageList
+            name={(isEng ? item.engLabel : item.korLabel) || ""}
+            value={item.value}
+          />
+        )}
+        keyExtractor={(item) => item.value}
+      />
     </View>
   );
 };
@@ -53,11 +73,8 @@ export default LanguageSetting;
 
 const styles = (background: string) =>
   StyleSheet.create({
-    languageSetting: {
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      flexDirection: "column",
+    languageSettingContainer: {
+      flex: 1,
       backgroundColor: background,
       width: "100%",
     },
