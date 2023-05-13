@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, RouteProp } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -20,8 +20,10 @@ import AddCover from "./pages/AddCover";
 import BackgroundSetting from "./pages/BackgroundSetting";
 import LanguageSetting from "./pages/LanguageSetting";
 import FontSetting from "./pages/FontSetting";
+import AddMood from "./pages/AddMood";
+import { RootStackParamList } from "./datas/rootType";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -63,6 +65,7 @@ export default function App() {
                       <Stack.Screen name="Settings" component={Setting} />
                       <Stack.Screen name="Search" component={Search} />
                       <Stack.Screen name="AddCover" component={AddCover} />
+                      <Stack.Screen name="AddMood" component={AddMood} />
                       <Stack.Screen
                         name="BackgroundSetting"
                         component={BackgroundSetting}

@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   ImageSourcePropType,
 } from "react-native";
+import getDates from "../helper/getDates";
 
 export type MoodsData = {
   engLabel: string;
@@ -65,16 +66,18 @@ interface MoodsListProps {
 }
 const MoodsList = (props: MoodsListProps) => {
   const { navigation } = props;
+  const { year, month, day, date } = getDates(new Date());
 
   return (
     <View style={styles.moodList}>
       {Moods.map((mood) => (
         <TouchableWithoutFeedback
           onPress={(mood) =>
-            navigation.navigate("Add", {
-              monthYear: "",
+            navigation.navigate("AddMood", {
+              monthYear: `${month} ${year}`,
               date,
-              mood,
+              day,
+              //   mood,
               isNew: true,
             })
           }>

@@ -1,4 +1,4 @@
-export const getDates = (dateData: Date) => {
+const getDates = (dateData: Date) => {
   const year = dateData.getFullYear();
   const month = convertMonth(dateData.getMonth());
   const day = convertDay(dateData.getDay());
