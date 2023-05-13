@@ -9,12 +9,7 @@ import { theme } from "../styles/theme";
 import getFontsList from "../helper/getFontsList";
 import FontStyleList from "../components/FontStyleList";
 import FontPreview from "../components/FontPreview";
-
-// type LanguageData = {
-//   value: languageType;
-//   engLabel?: string;
-//   korLabel?: string;
-// };
+import FontSlider from "../components/FontSlider";
 
 interface FontSettingProps {
   navigation: any;
@@ -49,6 +44,9 @@ const FontSetting = (props: FontSettingProps) => {
       <View style={styles(background).preview}>
         <FontPreview />
       </View>
+      <View style={styles(background).slider}>
+        <FontSlider />
+      </View>
       <ScrollView style={styles(background).lists}>
         <FlatList
           data={fontLists}
@@ -71,6 +69,7 @@ const styles = (background: string) =>
       backgroundColor: background,
       width: "100%",
     },
+    slider: { flex: 0.2 },
     preview: { flex: 0.5 },
     lists: { flex: 2 },
   });

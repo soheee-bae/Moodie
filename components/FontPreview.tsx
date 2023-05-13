@@ -11,7 +11,7 @@ const FontPreview = (props: FontPreviewProps) => {
   const { isEng, highlightColor } = useContext(ThemeContext);
 
   const contentText = isEng
-    ? "I spend my day learning new things which makes me very feel more empowered."
+    ? "I spend my day learning new things. Meaningful time!"
     : "오늘은 온전히 나를 위한 시간을 보냈다! 너무나도 행복했던 하루";
   return (
     <View style={styles.fontPreview}>
