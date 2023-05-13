@@ -77,7 +77,7 @@ const MoodsList = (props: MoodsListProps) => {
               monthYear: `${month} ${year}`,
               date,
               day,
-              //   mood,
+              mood,
               isNew: true,
             })
           }>

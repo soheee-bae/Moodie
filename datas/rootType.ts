@@ -1,3 +1,5 @@
+import { MoodsData } from "../components/MoodsList";
+
 export type RootStackParamList = {
   HomeCalendar: undefined;
   HomeList: undefined;
@@ -5,13 +7,11 @@ export type RootStackParamList = {
   Search: undefined;
   AddCover: undefined;
   AddMood: {
-    // params: {
     monthYear: string;
     date: number;
     day: number;
-    //   mood: MoodsData;
+    mood: MoodsData;
     isNew: boolean;
-    // };
   };
   BackgroundSetting: undefined;
   LanguageSetting: undefined;

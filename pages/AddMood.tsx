@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { View, StyleSheet } from "react-native";
+import React, { useContext, useState } from "react";
+import { View, StyleSheet, Modal } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Entypo } from "@expo/vector-icons";
 
@@ -10,18 +10,19 @@ import { theme } from "../styles/theme";
 import MoodEditableCard from "../components/MoodEditableCard";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../datas/rootType";
+import CloseModal from "../components/CloseModal";
 
 const AddMood = ({
   navigation,
   route,
 }: NativeStackScreenProps<RootStackParamList, "AddMood">) => {
-  const { monthYear, date, day, isNew } = route.params;
-
+  const { monthYear, date, day, mood, isNew } = route.params;
   const insets = useSafeAreaInsets();
 
   const { view } = useContext(ViewContext);
   const { background, isEng } = useContext(ThemeContext);
 
+  const viewStr = view === "HomeCalendar" ? "HomeCalendar" : "HomeList";
   return (
     <View
       style={[
@@ -32,10 +33,7 @@ const AddMood = ({
         styles(background).addMode,
       ]}>
       <BasicTopnav
-        firstIcon={
-          <Entypo name="cross" size={20} color={theme.colors.lightBlack} />
-        }
-        // firstPress={() => navigation.navigate(view)}
+        firstIcon={<CloseModal onPress={() => navigation.navigate(viewStr)} />}
         content={monthYear}
         lastIcon={
           <Entypo name="check" size={20} color={theme.colors.lightBlack} />
