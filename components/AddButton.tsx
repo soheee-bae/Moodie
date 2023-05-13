@@ -25,7 +25,7 @@ const AddButton = (props: AddButtonProps) => {
         icon={
           <AntDesign
             name="pluscircleo"
-            size={49}
+            size={47}
             color={theme.colors.lightBlack}
           />
         }

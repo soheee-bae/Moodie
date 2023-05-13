@@ -4,43 +4,58 @@ import {
   View,
   Image,
   TouchableWithoutFeedback,
+  ImageSourcePropType,
 } from "react-native";
 
-const Moods = [
+export type MoodsData = {
+  engLabel: string;
+  korLabel: string;
+  file: ImageSourcePropType;
+};
+const Moods: MoodsData[] = [
   {
-    label: "stressed",
+    engLabel: "stressed",
+    korLabel: "짜증나",
     file: require("../assets/moods/stressed.png"),
   },
   {
-    label: "ecstatic",
+    engLabel: "ecstatic",
+    korLabel: "기대돼",
     file: require("../assets/moods/ecstatic.png"),
   },
   {
-    label: "excited",
+    engLabel: "excited",
+    korLabel: "설레",
     file: require("../assets/moods/excited.png"),
   },
   {
-    label: "happy",
+    engLabel: "happy",
+    korLabel: "행복해",
     file: require("../assets/moods/happy.png"),
   },
   {
-    label: "calm",
+    engLabel: "calm",
+    korLabel: "평온해",
     file: require("../assets/moods/calm.png"),
   },
   {
-    label: "bored",
+    engLabel: "bored",
+    korLabel: "심심해",
     file: require("../assets/moods/bored.png"),
   },
   {
-    label: "worried",
+    engLabel: "worried",
+    korLabel: "걱정돼",
     file: require("../assets/moods/worried.png"),
   },
   {
-    label: "tired",
+    engLabel: "tired",
+    korLabel: "피곤해",
     file: require("../assets/moods/tired.png"),
   },
   {
-    label: "sad",
+    engLabel: "sad",
+    korLabel: "슬퍼",
     file: require("../assets/moods/sad.png"),
   },
 ];
@@ -57,13 +72,16 @@ const MoodsList = (props: MoodsListProps) => {
         <TouchableWithoutFeedback
           onPress={(mood) =>
             navigation.navigate("Add", {
-              mood: mood,
+              monthYear: "",
+              date,
+              mood,
+              isNew: true,
             })
           }>
           <Image
             source={mood.file}
-            alt={mood.label}
-            id={mood.label}
+            alt={mood.engLabel}
+            id={mood.engLabel}
             style={styles.mood}
           />
         </TouchableWithoutFeedback>
