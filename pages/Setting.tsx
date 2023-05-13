@@ -37,7 +37,7 @@ const settings: SettingData[] = [
   },
   {
     engname: "Background",
-    korname: "배경",
+    korname: "배경색",
     link: "BackgroundSetting",
     icon: <AntDesign name="picture" size={24} color={theme.colors.black} />,
   },

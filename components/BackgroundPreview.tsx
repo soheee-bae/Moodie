@@ -1,6 +1,5 @@
-import React, { ReactNode, useContext } from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
-import { IconButton } from "@react-native-material/core";
 import { theme } from "../styles/theme";
 import ThemeContext from "../contexts/ThemeContext";
 import HighlightIcon from "./HighlightIcon";

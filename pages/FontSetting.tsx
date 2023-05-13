@@ -1,40 +1,30 @@
 import React, { useContext } from "react";
-import { View, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList, Text } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import BasicTopnav from "../components/BasicNav";
-import ThemeContext, { languageType } from "../contexts/ThemeContext";
+import ThemeContext from "../contexts/ThemeContext";
 import { theme } from "../styles/theme";
-import LanguageList from "../components/LanguageList";
+import getFontsList from "../helper/getFontsList";
+import FontStyleList from "../components/FontStyleList";
 
-type LanguageData = {
-  value: languageType;
-  engLabel?: string;
-  korLabel?: string;
-};
+// type LanguageData = {
+//   value: languageType;
+//   engLabel?: string;
+//   korLabel?: string;
+// };
 
-const languages: LanguageData[] = [
-  {
-    value: "eng",
-    engLabel: "English",
-    korLabel: "영어",
-  },
-  {
-    value: "kor",
-    engLabel: "Korean",
-    korLabel: "한국어",
-  },
-];
-
-interface LanguageSettingProps {
+interface FontSettingProps {
   navigation: any;
 }
 
-const LanguageSetting = (props: LanguageSettingProps) => {
+const FontSetting = (props: FontSettingProps) => {
   const { navigation } = props;
   const insets = useSafeAreaInsets();
-  const { background, isEng, setLanguage } = useContext(ThemeContext);
+  const { background, isEng, language } = useContext(ThemeContext);
+
+  const fontLists = getFontsList(language);
 
   return (
     <View
@@ -42,7 +32,7 @@ const LanguageSetting = (props: LanguageSettingProps) => {
         {
           paddingTop: insets.top,
         },
-        styles(background).languageSettingContainer,
+        styles(background).fontSettingContainer,
       ]}>
       <BasicTopnav
         firstIcon={
@@ -53,15 +43,12 @@ const LanguageSetting = (props: LanguageSettingProps) => {
           />
         }
         firstPress={() => navigation.navigate("Settings")}
-        content={isEng ? "Language" : "언어"}
+        content={isEng ? "Font Style" : "글자 스타일"}
       />
       <FlatList
-        data={languages}
+        data={fontLists}
         renderItem={({ item }) => (
-          <LanguageList
-            name={(isEng ? item.engLabel : item.korLabel) || ""}
-            value={item.value}
-          />
+          <FontStyleList name={item.label} value={item.value} />
         )}
         keyExtractor={(item) => item.value}
       />
@@ -69,11 +56,11 @@ const LanguageSetting = (props: LanguageSettingProps) => {
   );
 };
 
-export default LanguageSetting;
+export default FontSetting;
 
 const styles = (background: string) =>
   StyleSheet.create({
-    languageSettingContainer: {
+    fontSettingContainer: {
       flex: 1,
       backgroundColor: background,
       width: "100%",
