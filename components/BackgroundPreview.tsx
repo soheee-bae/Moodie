@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
+
 import { theme } from "../styles/theme";
 import ThemeContext from "../contexts/ThemeContext";
 import HighlightIcon from "./HighlightIcon";
-
-interface BackgroundPreviewProps {}
+import FontContext from "../contexts/FontContext";
 
 const mood = require("../assets/moods/happy.png");
 
-const BackgroundPreview = (props: BackgroundPreviewProps) => {
-  //   const {  } = props;
+const BackgroundPreview = () => {
   const { isEng, highlightColor } = useContext(ThemeContext);
+  const { fontSizePx, fontStyle } = useContext(FontContext);
 
   return (
     <View style={styles.backgroundPreview}>
@@ -22,7 +22,9 @@ const BackgroundPreview = (props: BackgroundPreviewProps) => {
           <Image source={mood} style={styles.mood} />
         </View>
         <View style={styles.text}>
-          <Text>{isEng ? "Happy!" : "행복해!"}</Text>
+          <Text style={{ fontFamily: fontStyle, fontSize: fontSizePx }}>
+            {isEng ? "Happy!" : "행복해!"}
+          </Text>
           <HighlightIcon color={highlightColor} width={125} height={25} />
         </View>
       </View>
@@ -49,6 +51,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   dateNum: {
+    fontSize: theme.typography.xl,
     padding: 15,
   },
   img: {

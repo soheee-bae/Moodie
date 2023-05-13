@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
-import { View, StyleSheet, FlatList, Text, ScrollView } from "react-native";
+import { View, StyleSheet, FlatList, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MaterialIcons } from "@expo/vector-icons";
 
-import BasicTopnav from "../components/BasicNav";
 import ThemeContext from "../contexts/ThemeContext";
 import { theme } from "../styles/theme";
 import getFontsList from "../helper/getFontsList";
+
 import FontStyleList from "../components/FontStyleList";
 import FontPreview from "../components/FontPreview";
 import FontSlider from "../components/FontSlider";
+import BasicTopnav from "../components/BasicNav";
 
 interface FontSettingProps {
   navigation: any;

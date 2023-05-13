@@ -1,23 +1,18 @@
 import React, { useContext } from "react";
-import { StyleSheet, TouchableWithoutFeedback, Text, View } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { StyleSheet, Text, View } from "react-native";
 import { Slider } from "@miblanchard/react-native-slider";
-import { AntDesign } from "@expo/vector-icons";
 
-import ThemeContext, { languageType } from "../contexts/ThemeContext";
 import { theme } from "../styles/theme";
 import FontContext from "../contexts/FontContext";
 import getFontSize from "../helper/getFontSize";
+import getFontSizeReverse from "../helper/getFontSizeReverse";
 
-interface FontSliderProps {}
-const FontSlider = (props: FontSliderProps) => {
-  //   const { name, value } = props;
-  const { setFontSize } = useContext(FontContext);
+const FontSlider = () => {
+  const { setFontSize, fontSize } = useContext(FontContext);
 
   return (
     <View style={styles.fontSlider}>
       <Text style={styles.min}>A</Text>
-
       <Slider
         containerStyle={styles.slider}
         trackStyle={styles.track}
@@ -25,6 +20,7 @@ const FontSlider = (props: FontSliderProps) => {
         maximumValue={4}
         minimumTrackTintColor="#000000"
         maximumTrackTintColor="#000000"
+        value={getFontSizeReverse(fontSize)}
         step={1}
         trackMarks={[1, 2, 3]}
         thumbTintColor="#000000"
@@ -61,6 +57,8 @@ const styles = StyleSheet.create({
     height: 10,
     width: 10,
   },
-  min: {},
-  max: {},
+  min: { fontSize: theme.typography.xs },
+  max: {
+    fontSize: theme.typography.xl,
+  },
 });

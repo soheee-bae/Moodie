@@ -1,8 +1,9 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useContext } from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import { theme } from "../styles/theme";
+import FontContext from "../contexts/FontContext";
 
 interface SettingItemProps {
   name: string;
@@ -13,6 +14,7 @@ interface SettingItemProps {
 
 const SettingItem = (props: SettingItemProps) => {
   const { name, link, navigation, icon } = props;
+  const { fontSizePx, fontStyle } = useContext(FontContext);
 
   const handlePress = (link: string) => {
     navigation.navigate(link);
@@ -23,10 +25,10 @@ const SettingItem = (props: SettingItemProps) => {
       onPress={() => {
         handlePress(link);
       }}
-      style={styles.settingItem}>
-      <View style={styles.content}>
+      style={styles(fontSizePx, fontStyle).settingItem}>
+      <View style={styles(fontSizePx, fontStyle).content}>
         <Text>{icon}</Text>
-        <Text style={styles.name}>{name}</Text>
+        <Text style={styles(fontSizePx, fontStyle).name}>{name}</Text>
       </View>
       <MaterialIcons
         name="arrow-forward-ios"
@@ -39,21 +41,25 @@ const SettingItem = (props: SettingItemProps) => {
 
 export default SettingItem;
 
-const styles = StyleSheet.create({
-  settingItem: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    maxWidth: "100%",
-    alignItems: "center",
-    paddingHorizontal: 22,
-    paddingVertical: 21,
-  },
-  content: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 17,
-  },
-  name: {},
-});
+const styles = (fontSizePx: number, fontStyle: string) =>
+  StyleSheet.create({
+    settingItem: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      maxWidth: "100%",
+      alignItems: "center",
+      paddingHorizontal: 22,
+      paddingVertical: 21,
+    },
+    content: {
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 17,
+    },
+    name: {
+      fontFamily: fontStyle,
+      fontSize: fontSizePx,
+    },
+  });

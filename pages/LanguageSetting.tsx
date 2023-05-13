@@ -3,10 +3,10 @@ import { View, StyleSheet, FlatList } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MaterialIcons } from "@expo/vector-icons";
 
+import LanguageList from "../components/LanguageList";
 import BasicTopnav from "../components/BasicNav";
 import ThemeContext, { languageType } from "../contexts/ThemeContext";
 import { theme } from "../styles/theme";
-import LanguageList from "../components/LanguageList";
 
 type LanguageData = {
   value: languageType;

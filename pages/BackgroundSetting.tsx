@@ -5,9 +5,10 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 import BasicTopnav from "../components/BasicNav";
 import BackgroundList from "../components/BackgroundList";
+import BackgroundPreview from "../components/BackgroundPreview";
+
 import ThemeContext from "../contexts/ThemeContext";
 import { theme } from "../styles/theme";
-import BackgroundPreview from "../components/BackgroundPreview";
 
 interface BackgroundSettingProps {
   navigation: any;

@@ -4,6 +4,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 import ThemeContext, { languageType } from "../contexts/ThemeContext";
 import { theme } from "../styles/theme";
+import FontContext from "../contexts/FontContext";
 
 interface LanguageListProps {
   name: string;
@@ -12,15 +13,19 @@ interface LanguageListProps {
 const LanguageList = (props: LanguageListProps) => {
   const { name, value } = props;
   const { setLanguage, language } = useContext(ThemeContext);
+  const { fontSizePx, fontStyle } = useContext(FontContext);
 
   const isSelected = language === value;
+
   return (
     <TouchableWithoutFeedback
       onPress={() => {
         setLanguage(value);
       }}>
       <View style={styles.languageList}>
-        <Text>{name}</Text>
+        <Text style={{ fontFamily: fontStyle, fontSize: fontSizePx }}>
+          {name}
+        </Text>
         {isSelected ? (
           <MaterialIcons
             name="radio-button-checked"

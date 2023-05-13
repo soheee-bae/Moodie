@@ -6,22 +6,27 @@ import {
   useState,
 } from "react";
 import ThemeContext from "./ThemeContext";
+import { theme } from "../styles/theme";
 
-type fontSizeType = "xs" | "sm" | "md" | "lg" | "xl";
+export type fontSizeType = "xs" | "sm" | "md" | "lg" | "xl";
 
 export type FontContextContent = {
   fontSize: fontSizeType;
   setFontSize: (fontSize: fontSizeType) => void;
   fontStyle: string;
   setfontStyle: (fontStyle: string) => void;
+  fontSizePx: number;
 };
 
 const FontContext = createContext<FontContextContent>({
   fontSize: "md",
-  setFontSize: (fontSize: fontSizeType) => undefined,
+  setFontSize: (fontSize) => undefined,
   fontStyle: "",
-  setfontStyle: (fontStyle: string) => undefined,
+  setfontStyle: (fontStyle) => undefined,
+  fontSizePx: 14,
 });
+
+const fontSizeList = Object.values(theme.typography);
 
 interface FontContextProps {
   children: ReactNode;
@@ -32,6 +37,8 @@ function FontContextProvider(props: FontContextProps) {
   const { isEng } = useContext(ThemeContext);
   const [fontSize, setFontSize] = useState<fontSizeType>("md"); // xs, sm, md, lg, xl
   const [fontStyle, setfontStyle] = useState("");
+
+  const fontSizePx = theme.typography[fontSize];
 
   useEffect(() => {
     const defaultFont = isEng ? "Inter_400Regular" : "NotoSansKR_400Regular";
@@ -45,6 +52,7 @@ function FontContextProvider(props: FontContextProps) {
         setFontSize,
         fontStyle,
         setfontStyle,
+        fontSizePx,
       }}>
       {children}
     </FontContext.Provider>

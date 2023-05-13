@@ -1,7 +1,8 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useContext } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { IconButton } from "@react-native-material/core";
 import { theme } from "../styles/theme";
+import FontContext from "../contexts/FontContext";
 
 interface BasicNavProps {
   firstIcon?: ReactNode;
@@ -13,6 +14,8 @@ interface BasicNavProps {
 
 const BasicNav = (props: BasicNavProps) => {
   const { firstIcon, lastIcon, content, firstPress, lastPress } = props;
+  const { fontSizePx, fontStyle } = useContext(FontContext);
+
   return (
     <View style={styles.header}>
       <IconButton
@@ -20,7 +23,9 @@ const BasicNav = (props: BasicNavProps) => {
         onPress={firstPress}
         color={theme.colors.background}
       />
-      <Text>{content}</Text>
+      <Text style={{ fontFamily: fontStyle, fontSize: fontSizePx }}>
+        {content}
+      </Text>
       <IconButton
         icon={lastIcon}
         onPress={lastPress}

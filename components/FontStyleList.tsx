@@ -20,7 +20,9 @@ const FontStyleList = (props: FontStyleListProps) => {
         setfontStyle(value);
       }}>
       <View style={styles.fontStyleList}>
-        <Text style={{ fontFamily: value }}>{name}</Text>
+        <Text style={{ fontFamily: value, fontSize: theme.typography.md }}>
+          {name}
+        </Text>
         {isSelected ? (
           <MaterialIcons
             name="radio-button-checked"
