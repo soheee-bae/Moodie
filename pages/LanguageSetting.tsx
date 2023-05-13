@@ -34,7 +34,7 @@ interface LanguageSettingProps {
 const LanguageSetting = (props: LanguageSettingProps) => {
   const { navigation } = props;
   const insets = useSafeAreaInsets();
-  const { background, isEng, setLanguage } = useContext(ThemeContext);
+  const { background, isEng } = useContext(ThemeContext);
 
   return (
     <View

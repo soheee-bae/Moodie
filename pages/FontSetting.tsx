@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, StyleSheet, FlatList, Text } from "react-native";
+import { View, StyleSheet, FlatList, Text, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -8,6 +8,7 @@ import ThemeContext from "../contexts/ThemeContext";
 import { theme } from "../styles/theme";
 import getFontsList from "../helper/getFontsList";
 import FontStyleList from "../components/FontStyleList";
+import FontPreview from "../components/FontPreview";
 
 // type LanguageData = {
 //   value: languageType;
@@ -45,13 +46,18 @@ const FontSetting = (props: FontSettingProps) => {
         firstPress={() => navigation.navigate("Settings")}
         content={isEng ? "Font Style" : "글자 스타일"}
       />
-      <FlatList
-        data={fontLists}
-        renderItem={({ item }) => (
-          <FontStyleList name={item.label} value={item.value} />
-        )}
-        keyExtractor={(item) => item.value}
-      />
+      <View style={styles(background).preview}>
+        <FontPreview />
+      </View>
+      <ScrollView style={styles(background).lists}>
+        <FlatList
+          data={fontLists}
+          renderItem={({ item }) => (
+            <FontStyleList name={item.label} value={item.value} />
+          )}
+          keyExtractor={(item) => item.value}
+        />
+      </ScrollView>
     </View>
   );
 };
@@ -65,4 +71,6 @@ const styles = (background: string) =>
       backgroundColor: background,
       width: "100%",
     },
+    preview: { flex: 0.5 },
+    lists: { flex: 2 },
   });

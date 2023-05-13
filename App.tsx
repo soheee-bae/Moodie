@@ -8,6 +8,8 @@ import AppLoading from "expo-app-loading";
 
 import { ViewContextProvider } from "./contexts/ViewContext";
 import { ThemeContextProvider } from "./contexts/ThemeContext";
+import { FontContextProvider } from "./contexts/FontContext";
+
 import getFonts from "./helper/getFonts";
 
 import HomeCalendar from "./pages/HomeCalendar";
@@ -41,40 +43,45 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <ThemeContextProvider>
-        <ViewContextProvider>
-          <NavigationContainer>
-            <Stack.Navigator
-              initialRouteName="HomeCalendar"
-              screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="HomeCalendar">
-                {() => (
-                  <Tab.Navigator
-                    initialRouteName="HomeCalendar"
-                    tabBar={() => null}
-                    screenOptions={{ headerShown: false }}>
-                    <Stack.Screen
-                      name="HomeCalendar"
-                      component={HomeCalendar}
-                    />
-                    <Stack.Screen name="HomeList" component={HomeList} />
-                    <Stack.Screen name="Settings" component={Setting} />
-                    <Stack.Screen name="Search" component={Search} />
-                    <Stack.Screen name="AddCover" component={AddCover} />
-                    <Stack.Screen
-                      name="BackgroundSetting"
-                      component={BackgroundSetting}
-                    />
-                    <Stack.Screen
-                      name="LanguageSetting"
-                      component={LanguageSetting}
-                    />
-                    <Stack.Screen name="FontSetting" component={FontSetting} />
-                  </Tab.Navigator>
-                )}
-              </Stack.Screen>
-            </Stack.Navigator>
-          </NavigationContainer>
-        </ViewContextProvider>
+        <FontContextProvider>
+          <ViewContextProvider>
+            <NavigationContainer>
+              <Stack.Navigator
+                initialRouteName="HomeCalendar"
+                screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="HomeCalendar">
+                  {() => (
+                    <Tab.Navigator
+                      initialRouteName="HomeCalendar"
+                      tabBar={() => null}
+                      screenOptions={{ headerShown: false }}>
+                      <Stack.Screen
+                        name="HomeCalendar"
+                        component={HomeCalendar}
+                      />
+                      <Stack.Screen name="HomeList" component={HomeList} />
+                      <Stack.Screen name="Settings" component={Setting} />
+                      <Stack.Screen name="Search" component={Search} />
+                      <Stack.Screen name="AddCover" component={AddCover} />
+                      <Stack.Screen
+                        name="BackgroundSetting"
+                        component={BackgroundSetting}
+                      />
+                      <Stack.Screen
+                        name="LanguageSetting"
+                        component={LanguageSetting}
+                      />
+                      <Stack.Screen
+                        name="FontSetting"
+                        component={FontSetting}
+                      />
+                    </Tab.Navigator>
+                  )}
+                </Stack.Screen>
+              </Stack.Navigator>
+            </NavigationContainer>
+          </ViewContextProvider>
+        </FontContextProvider>
       </ThemeContextProvider>
     </SafeAreaProvider>
   );

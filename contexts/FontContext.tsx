@@ -1,4 +1,11 @@
-import { ReactNode, createContext, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import ThemeContext from "./ThemeContext";
 
 type fontSizeType = "xs" | "sm" | "md" | "lg" | "xl";
 
@@ -22,8 +29,14 @@ interface FontContextProps {
 
 function FontContextProvider(props: FontContextProps) {
   const { children } = props;
+  const { isEng } = useContext(ThemeContext);
   const [fontSize, setFontSize] = useState<fontSizeType>("md"); // xs, sm, md, lg, xl
-  const [fontStyle, setfontStyle] = useState("md"); //
+  const [fontStyle, setfontStyle] = useState("");
+
+  useEffect(() => {
+    const defaultFont = isEng ? "Inter_400Regular" : "NotoSansKR_400Regular";
+    setfontStyle(defaultFont);
+  }, [isEng]);
 
   return (
     <FontContext.Provider
