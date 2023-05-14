@@ -5,27 +5,9 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 import LanguageList from "../components/LanguageList";
 import BasicTopnav from "../components/BasicNav";
-import ThemeContext, { languageType } from "../contexts/ThemeContext";
+import ThemeContext from "../contexts/ThemeContext";
 import { theme } from "../styles/theme";
-
-type LanguageData = {
-  value: languageType;
-  engLabel?: string;
-  korLabel?: string;
-};
-
-const languages: LanguageData[] = [
-  {
-    value: "eng",
-    engLabel: "English",
-    korLabel: "영어",
-  },
-  {
-    value: "kor",
-    engLabel: "Korean",
-    korLabel: "한국어",
-  },
-];
+import { languages } from "../datas/language";
 
 interface LanguageSettingProps {
   navigation: any;

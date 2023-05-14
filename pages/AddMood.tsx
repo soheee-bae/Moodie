@@ -1,28 +1,52 @@
 import React, { useContext, useState } from "react";
-import { View, StyleSheet, Modal } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Entypo } from "@expo/vector-icons";
+import {
+  KeyboardAvoidingView,
+  View,
+  StyleSheet,
+  ScrollView,
+  Platform,
+  Text,
+} from "react-native";
+import { Octicons } from "@expo/vector-icons";
 
-import BasicTopnav from "../components/BasicNav";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { Entypo } from "@expo/vector-icons";
+import { IconButton } from "@react-native-material/core";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+
 import ViewContext from "../contexts/ViewContext";
 import ThemeContext from "../contexts/ThemeContext";
-import { theme } from "../styles/theme";
-import MoodEditableCard from "../components/MoodEditableCard";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../datas/rootType";
+import { theme } from "../styles/theme";
+
+import BasicTopnav from "../components/BasicNav";
 import CloseModal from "../components/CloseModal";
+import MoodEditableCard from "../components/MoodEditableCard";
+import getDates from "../helper/getDates";
 
 const AddMood = ({
   navigation,
   route,
 }: NativeStackScreenProps<RootStackParamList, "AddMood">) => {
-  const { monthYear, date, day, mood, isNew } = route.params;
+  const { initialDate, initialMood } = route.params;
   const insets = useSafeAreaInsets();
 
   const { view } = useContext(ViewContext);
   const { background, isEng } = useContext(ThemeContext);
 
   const viewStr = view === "HomeCalendar" ? "HomeCalendar" : "HomeList";
+
+  const [title, setTitle] = useState(
+    isEng ? initialMood.engLabel : initialMood.korLabel
+  );
+  const [content, setContent] = useState("");
+  const [mood, setMood] = useState(initialMood);
+  const [date, setDate] = useState(initialDate);
+  const [textAlign, setTextAlign] = useState("flex-start");
+  const { hour, minute, ampm } = getDates(date);
+
   return (
     <View
       style={[
@@ -34,15 +58,27 @@ const AddMood = ({
       ]}>
       <BasicTopnav
         firstIcon={<CloseModal onPress={() => navigation.navigate(viewStr)} />}
-        content={monthYear}
         lastIcon={
           <Entypo name="check" size={20} color={theme.colors.lightBlack} />
         }
-        //   lastPress={() => {//save }}
+        lastPress={() => {
+          navigation.navigate(viewStr);
+        }}
       />
-      <View>
-        <MoodEditableCard date={date} day={day} isNew={isNew} />
-      </View>
+      <ScrollView>
+        <MoodEditableCard
+          title={title}
+          setTitle={setTitle}
+          content={content}
+          setContent={setContent}
+          date={date}
+          setDate={setDate}
+          mood={mood}
+          setMood={setMood}
+          textAlign={textAlign}
+        />
+      </ScrollView>
+      
     </View>
   );
 };

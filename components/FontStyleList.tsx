@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { StyleSheet, TouchableWithoutFeedback, Text, View } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
 
-import { theme } from "../styles/theme";
+import CheckIcon from "./CheckIcon";
 import FontContext from "../contexts/FontContext";
+import { theme } from "../styles/theme";
 
 interface FontStyleListProps {
   name: string;
@@ -14,6 +14,7 @@ const FontStyleList = (props: FontStyleListProps) => {
   const { fontStyle, setfontStyle } = useContext(FontContext);
 
   const isSelected = fontStyle === value;
+
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -23,19 +24,7 @@ const FontStyleList = (props: FontStyleListProps) => {
         <Text style={{ fontFamily: value, fontSize: theme.typography.md }}>
           {name}
         </Text>
-        {isSelected ? (
-          <MaterialIcons
-            name="radio-button-checked"
-            size={24}
-            color={theme.colors.lightBlack}
-          />
-        ) : (
-          <MaterialIcons
-            name="radio-button-unchecked"
-            size={24}
-            color={theme.colors.lightBlack}
-          />
-        )}
+        <CheckIcon isSelected={isSelected} color={theme.colors.lightBlack} />
       </View>
     </TouchableWithoutFeedback>
   );

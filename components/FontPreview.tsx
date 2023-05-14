@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
-import { theme } from "../styles/theme";
 import ThemeContext from "../contexts/ThemeContext";
 import FontContext from "../contexts/FontContext";
 import HighlightIcon from "./HighlightIcon";
+import { theme } from "../styles/theme";
 
 const FontPreview = () => {
   const { isEng, highlightColor } = useContext(ThemeContext);
@@ -13,6 +13,7 @@ const FontPreview = () => {
   const contentText = isEng
     ? "I spend my day learning new things. Meaningful time!"
     : "오늘은 온전히 나를 위한 시간을 보냈다! 너무나도 행복했던 하루";
+
   return (
     <View style={styles(fontSizePx, fontStyle).fontPreview}>
       <View style={styles(fontSizePx, fontStyle).preview}>

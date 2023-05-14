@@ -5,9 +5,10 @@ import {
   ScrollView,
   View,
 } from "react-native";
-import { theme } from "../styles/theme";
+
 import ThemeContext from "../contexts/ThemeContext";
-import { MaterialIcons } from "@expo/vector-icons";
+import { theme } from "../styles/theme";
+import CheckIcon from "./CheckIcon";
 
 const backgrounds = Object.values(theme.background);
 
@@ -22,6 +23,7 @@ const BackgroundList = () => {
         const isSelected = background === color;
         return (
           <TouchableWithoutFeedback
+            id={color}
             onPress={() => {
               setBackground(color);
             }}>
@@ -32,19 +34,7 @@ const BackgroundList = () => {
                 },
                 styles.background,
               ]}>
-              {isSelected ? (
-                <MaterialIcons
-                  name="radio-button-checked"
-                  size={24}
-                  color="white"
-                />
-              ) : (
-                <MaterialIcons
-                  name="radio-button-unchecked"
-                  size={24}
-                  color="white"
-                />
-              )}
+              <CheckIcon isSelected={isSelected} color="white" />
             </View>
           </TouchableWithoutFeedback>
         );

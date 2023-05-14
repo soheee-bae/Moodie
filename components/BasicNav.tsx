@@ -1,8 +1,9 @@
 import React, { ReactNode, useContext } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { IconButton } from "@react-native-material/core";
-import { theme } from "../styles/theme";
+
 import FontContext from "../contexts/FontContext";
+import { theme } from "../styles/theme";
 
 interface BasicNavProps {
   firstIcon?: ReactNode;

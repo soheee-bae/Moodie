@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { StyleSheet, TouchableWithoutFeedback, Text, View } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
 
 import ThemeContext, { languageType } from "../contexts/ThemeContext";
-import { theme } from "../styles/theme";
 import FontContext from "../contexts/FontContext";
+import { theme } from "../styles/theme";
+import CheckIcon from "./CheckIcon";
 
 interface LanguageListProps {
   name: string;
@@ -26,19 +26,7 @@ const LanguageList = (props: LanguageListProps) => {
         <Text style={{ fontFamily: fontStyle, fontSize: fontSizePx }}>
           {name}
         </Text>
-        {isSelected ? (
-          <MaterialIcons
-            name="radio-button-checked"
-            size={24}
-            color={theme.colors.lightBlack}
-          />
-        ) : (
-          <MaterialIcons
-            name="radio-button-unchecked"
-            size={24}
-            color={theme.colors.lightBlack}
-          />
-        )}
+        <CheckIcon isSelected={isSelected} color={theme.colors.lightBlack} />
       </View>
     </TouchableWithoutFeedback>
   );
