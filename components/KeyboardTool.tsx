@@ -44,11 +44,13 @@ const KeyboardTool = (props: KeyboardToolProps) => {
         highlight={highlight}
         onPress={(tempColor) => setHighlight(tempColor)}
       />
-      <IconButton
-        icon={alignment.icon}
-        onPress={() => setAlignment(getNextAlign(alignment))}
-        color={theme.colors.background}
-      />
+      {(content === "" || !content) && (
+        <IconButton
+          icon={alignment.icon}
+          onPress={() => setAlignment(getNextAlign(alignment))}
+          color={theme.colors.background}
+        />
+      )}
     </KeyboardAvoidingView>
   );
 };

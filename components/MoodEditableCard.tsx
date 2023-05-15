@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { TextInput } from "react-native-paper";
-import { StyleSheet, View, Image, Pressable } from "react-native";
+import { StyleSheet, View, Image, Pressable, ScrollView } from "react-native";
 
 import ThemeContext from "../contexts/ThemeContext";
 import getNextMood from "../helper/getNextMood";
@@ -43,7 +43,7 @@ const MoodEditableCard = (props: MoodEditableCardProps) => {
   const textAlign = alignment.textAlign;
   const alignItem = alignment.alignItem;
   return (
-    <View>
+    <ScrollView>
       <DateModal onPress={(tempDate) => setDate(tempDate)} date={date} />
       <Pressable
         onPress={() => {
@@ -54,23 +54,24 @@ const MoodEditableCard = (props: MoodEditableCardProps) => {
         <Image source={mood.file} style={styles(textAlign, alignItem).mood} />
       </Pressable>
       <TextInput
-        editable
         style={styles(textAlign, alignItem).title}
         onChangeText={setTitle}
         value={title}
       />
       <HighlightIcon color={highlight} width={125} height={25} />
       {img && (
-        <Image source={{ uri: img }} style={{ width: "80%", height: "100%" }} />
+        <Image
+          source={{ uri: img }}
+          style={{ width: "80%", aspectRatio: 1 / 1 }}
+        />
       )}
       <TextInput
-        editable
         multiline
         style={styles(textAlign, alignItem).content}
         onChangeText={setContent}
         value={content}
       />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -87,10 +88,8 @@ const styles = (
     },
     title: {},
     content: {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: alignItem,
+      flex: 1,
+      width: "100%",
       textAlign: textAlign,
-      alignItems: alignItem,
     },
   });

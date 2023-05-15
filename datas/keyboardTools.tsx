@@ -9,7 +9,7 @@ export type KeyboardToolData = {
 
 export type KeyboardAlignData = {
   icon: ReactNode;
-  textAlign: "center" | "auto" | "left" | "right" | "justify" | undefined;
+  textAlign: "center" | "left" | "right" | undefined;
   alignItem: FlexAlignType | undefined;
 };
 
