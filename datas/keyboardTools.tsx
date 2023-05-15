@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Octicons, MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 import HighlightIcon from "../components/HighlightIcon";
 import HightlightModal from "../components/HighlightModal";
+import { FlexAlignType } from "react-native";
 
 export type KeyboardToolData = {
   id: string;
@@ -10,8 +11,8 @@ export type KeyboardToolData = {
 
 export type KeyboardAlignData = {
   icon: ReactNode;
-  textAlign: string;
-  alignItem: string;
+  textAlign: "center" | "auto" | "left" | "right" | "justify" | undefined;
+  alignItem: FlexAlignType | undefined;
 };
 
 export const keyboardTools: KeyboardToolData[] = [

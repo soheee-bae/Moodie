@@ -1,15 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { TextInput } from "react-native-paper";
-import { StyleSheet, View, Text, Image, Pressable } from "react-native";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import {
+  StyleSheet,
+  View,
+  Image,
+  Pressable,
+  FlexAlignType,
+} from "react-native";
 
 import ThemeContext from "../contexts/ThemeContext";
-import getDates from "../helper/getDates";
 import getNextMood from "../helper/getNextMood";
 import { MoodsData } from "../datas/moods";
 import { KeyboardAlignData } from "../datas/keyboardTools";
 
-import ModalComp from "./Modal";
 import DateModal from "./DateModal";
 import HighlightIcon from "./HighlightIcon";
 
@@ -41,6 +44,8 @@ const MoodEditableCard = (props: MoodEditableCardProps) => {
   } = props;
   const { isEng } = useContext(ThemeContext);
 
+  const textAlign = alignment.textAlign;
+  const alignItem = alignment.alignItem;
   return (
     <View>
       <DateModal onPress={(tempDate) => setDate(tempDate)} date={date} />
@@ -50,26 +55,19 @@ const MoodEditableCard = (props: MoodEditableCardProps) => {
           setMood(nextMood);
           setTitle(isEng ? nextMood.engLabel : nextMood.korLabel);
         }}>
-        <Image source={mood.file} style={styles.mood} />
+        <Image source={mood.file} style={styles(textAlign, alignItem).mood} />
       </Pressable>
       <TextInput
         editable
-        style={styles.title}
+        style={styles(textAlign, alignItem).title}
         onChangeText={setTitle}
         value={title}
       />
       <HighlightIcon color={highlight} width={125} height={25} />
-
       <TextInput
         editable
         multiline
-        style={[
-          styles.content,
-          //   {
-          //     alignItems: alignment.alignItem,
-          //     textAlign: alignment.textAlign,
-          //   },
-        ]}
+        style={styles(textAlign, alignItem).content}
         onChangeText={setContent}
         value={content}
       />
@@ -79,14 +77,21 @@ const MoodEditableCard = (props: MoodEditableCardProps) => {
 
 export default MoodEditableCard;
 
-const styles = StyleSheet.create({
-  mood: {
-    width: 60,
-    height: 60,
-  },
-  title: {},
-  content: {
-    display: "flex",
-    justifyContent: "center",
-  },
-});
+const styles = (
+  textAlign: "center" | "auto" | "left" | "right" | "justify" | undefined,
+  alignItem: any
+) =>
+  StyleSheet.create({
+    mood: {
+      width: 60,
+      height: 60,
+    },
+    title: {},
+    content: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: alignItem,
+      textAlign: textAlign,
+      alignItems: alignItem,
+    },
+  });

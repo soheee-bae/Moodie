@@ -1,11 +1,9 @@
-import React, { ReactNode, useContext, useState } from "react";
-import { StyleSheet, View, Modal, Text, Pressable } from "react-native";
+import React, { ReactNode, useState } from "react";
+import { StyleSheet, View, Modal, Pressable } from "react-native";
 import { IconButton } from "@react-native-material/core";
 import { Entypo } from "@expo/vector-icons";
 
 import { theme } from "../styles/theme";
-import ThemeContext from "../contexts/ThemeContext";
-import FontContext from "../contexts/FontContext";
 
 interface ModalCompProps {
   onPress: () => void;

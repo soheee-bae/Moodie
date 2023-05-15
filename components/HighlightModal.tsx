@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { IconButton } from "@react-native-material/core";
 
 import { theme } from "../styles/theme";
 import ModalComp from "./Modal";
