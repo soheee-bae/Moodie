@@ -34,6 +34,7 @@ const AddMood = ({
   const [content, setContent] = useState("");
   const [mood, setMood] = useState(initialMood);
   const [date, setDate] = useState(initialDate);
+  const [img, setImg] = useState("");
   const [alignment, setAlignment] = useState(keyboardAlign[0]);
   const [highlight, setHighlight] = useState("#E1E1E1");
 
@@ -65,6 +66,7 @@ const AddMood = ({
           setDate={setDate}
           mood={mood}
           setMood={setMood}
+          img={img}
           alignment={alignment}
           highlight={highlight}
         />
@@ -74,7 +76,9 @@ const AddMood = ({
         setAlignment={setAlignment}
         content={content}
         setContent={setContent}
+        highlight={highlight}
         setHighlight={setHighlight}
+        setImg={setImg}
       />
     </View>
   );

@@ -1,12 +1,6 @@
 import React, { useContext } from "react";
 import { TextInput } from "react-native-paper";
-import {
-  StyleSheet,
-  View,
-  Image,
-  Pressable,
-  FlexAlignType,
-} from "react-native";
+import { StyleSheet, View, Image, Pressable } from "react-native";
 
 import ThemeContext from "../contexts/ThemeContext";
 import getNextMood from "../helper/getNextMood";
@@ -25,6 +19,7 @@ interface MoodEditableCardProps {
   setDate: (date: Date) => void;
   mood: MoodsData;
   setMood: (mood: MoodsData) => void;
+  img: string;
   alignment: KeyboardAlignData;
   highlight: string;
 }
@@ -40,6 +35,7 @@ const MoodEditableCard = (props: MoodEditableCardProps) => {
     mood,
     setMood,
     alignment,
+    img,
     highlight,
   } = props;
   const { isEng } = useContext(ThemeContext);
@@ -64,6 +60,9 @@ const MoodEditableCard = (props: MoodEditableCardProps) => {
         value={title}
       />
       <HighlightIcon color={highlight} width={125} height={25} />
+      {img && (
+        <Image source={{ uri: img }} style={{ width: "80%", height: "100%" }} />
+      )}
       <TextInput
         editable
         multiline

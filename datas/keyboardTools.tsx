@@ -1,7 +1,5 @@
 import { ReactNode } from "react";
-import { Octicons, MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
-import HighlightIcon from "../components/HighlightIcon";
-import HightlightModal from "../components/HighlightModal";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FlexAlignType } from "react-native";
 
 export type KeyboardToolData = {
@@ -14,14 +12,6 @@ export type KeyboardAlignData = {
   textAlign: "center" | "auto" | "left" | "right" | "justify" | undefined;
   alignItem: FlexAlignType | undefined;
 };
-
-export const keyboardTools: KeyboardToolData[] = [
-  { id: "image", icon: <Octicons name="image" size={24} /> },
-  {
-    id: "clock",
-    icon: <MaterialCommunityIcons name="clock-outline" size={24} />,
-  },
-];
 
 export const keyboardAlign: KeyboardAlignData[] = [
   {

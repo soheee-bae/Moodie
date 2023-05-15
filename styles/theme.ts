@@ -10,9 +10,11 @@ const palette = {
   teal: "#529ead",
   navy: "#40768c",
   black: "#000000",
-  lightBlack: "#444444",
   white: "#ffffff",
   lightWhite: "#eeeeee",
+  lightBlack: "#444444",
+  lighterBlack: "#575757",
+  lightestBlack: "#696969",
 
   // backgrounds
   whiteBackground: "#EEEEEE",
@@ -57,6 +59,8 @@ export const theme = {
     navy: palette.navy,
     black: palette.black,
     lightBlack: palette.lightBlack,
+    lighterBlack: palette.lighterBlack,
+    lightestBlack: palette.lightestBlack,
     white: palette.white,
   },
   background: {

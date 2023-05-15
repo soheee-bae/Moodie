@@ -7,12 +7,13 @@ import { theme } from "../styles/theme";
 
 interface ModalCompProps {
   onPress: () => void;
+  onCancel?: () => void;
   content: ReactNode;
   trigger: ReactNode;
 }
 
 const ModalComp = (props: ModalCompProps) => {
-  const { onPress, content, trigger } = props;
+  const { onPress, onCancel, content, trigger } = props;
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleLeave = () => {
@@ -22,6 +23,7 @@ const ModalComp = (props: ModalCompProps) => {
 
   const handleCancel = () => {
     setModalVisible(!modalVisible);
+    onCancel?.();
   };
 
   const handleOpen = () => {

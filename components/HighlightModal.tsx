@@ -9,21 +9,34 @@ import HighlightIcon from "./HighlightIcon";
 const highlights = Object.values(theme.highlights);
 
 interface HightlightModalProps {
+  highlight: string;
   onPress: (color: string) => void;
 }
 
 const HightlightModal = (props: HightlightModalProps) => {
-  const { onPress } = props;
+  const { highlight, onPress } = props;
 
-  const [tempColor, setTempColor] = useState("");
+  const [tempColor, setTempColor] = useState(highlight);
 
   const content = (
     <View style={styles.content}>
-      {highlights.map((color) => (
-        <Pressable onPress={() => setTempColor(color)}>
-          <HighlightIcon color={color} width={125} height={25} />
-        </Pressable>
-      ))}
+      {highlights.map((color) => {
+        const isSelected = color === tempColor;
+        return (
+          <Pressable
+            onPress={() => setTempColor(color)}
+            style={[
+              styles.highlight,
+              {
+                borderColor: isSelected
+                  ? theme.colors.lightestBlack
+                  : "transparent",
+              },
+            ]}>
+            <HighlightIcon color={color} width={120} height={25} />
+          </Pressable>
+        );
+      })}
     </View>
   );
 
@@ -32,6 +45,7 @@ const HightlightModal = (props: HightlightModalProps) => {
   return (
     <ModalComp
       onPress={() => onPress(tempColor)}
+      onCancel={() => setTempColor(highlight)}
       content={content}
       trigger={trigger}
     />
@@ -41,5 +55,17 @@ const HightlightModal = (props: HightlightModalProps) => {
 export default HightlightModal;
 
 const styles = StyleSheet.create({
-  content: {},
+  content: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    gap: 15,
+    marginBottom: 10,
+  },
+  highlight: {
+    padding: 5,
+    borderRadius: 10,
+    borderWidth: 1,
+  },
 });
