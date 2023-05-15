@@ -1,73 +1,51 @@
-import React, { useContext } from "react";
-import { StyleSheet } from "react-native";
+import React from "react";
+import { KeyboardAvoidingView, StyleSheet } from "react-native";
+import {
+  KeyboardAlignData,
+  KeyboardToolData,
+  keyboardTools,
+} from "../datas/keyboardTools";
+import { IconButton } from "@react-native-material/core";
+import { theme } from "../styles/theme";
+import getNextAlign from "../helper/getNextAlign";
+import getDates from "../helper/getDates";
+import HightlightModal from "./HighlightModal";
 
-interface KeyboardToolProps {}
+interface KeyboardToolProps {
+  alignment: KeyboardAlignData;
+  setAlignment: (tool: KeyboardAlignData) => void;
+  content: string;
+  setContent: (content: string) => void;
+  setHighlight: (highlight: string) => void;
+}
 const KeyboardTool = (props: KeyboardToolProps) => {
-  const {} = props;
+  const { alignment, setAlignment, content, setContent, setHighlight } = props;
+
+  const { hour, minute, ampm } = getDates(new Date());
+
+  const onPress = (tool: KeyboardToolData) => {
+    switch (tool.id) {
+      case "image":
+        break;
+      case "clock":
+        setContent(`${content} ${hour}:${minute} ${ampm}`);
+        break;
+    }
+  };
 
   return (
     <KeyboardAvoidingView behavior="padding" style={{ borderWidth: 1 }}>
+      {keyboardTools.map((tool) => (
+        <IconButton
+          icon={tool.icon}
+          onPress={() => onPress(tool)}
+          color={theme.colors.background}
+        />
+      ))}
+      <HightlightModal onPress={(tempColor) => setHighlight(tempColor)} />
       <IconButton
-        icon={<Octicons name="image" size={24} color="black" />}
-        onPress={() => {}}
-        color={theme.colors.background}
-      />
-      <IconButton
-        icon={
-          <MaterialCommunityIcons
-            name="format-align-left"
-            size={24}
-            color="black"
-          />
-        }
-        onPress={() => {
-          setTextAlign("flex-start");
-        }}
-        color={theme.colors.background}
-      />
-      <IconButton
-        icon={
-          <MaterialCommunityIcons
-            name="format-align-center"
-            size={24}
-            color="black"
-          />
-        }
-        onPress={() => {
-          setTextAlign("center");
-        }}
-        color={theme.colors.background}
-      />
-      <IconButton
-        icon={
-          <MaterialCommunityIcons
-            name="format-align-right"
-            size={24}
-            color="black"
-          />
-        }
-        onPress={() => {
-          setTextAlign("flex-end");
-        }}
-        color={theme.colors.background}
-      />
-
-      <IconButton
-        icon={<Ionicons name="color-palette-outline" size={24} color="black" />}
-        onPress={() => {}}
-        color={theme.colors.background}
-      />
-      <IconButton
-        icon={
-          <MaterialCommunityIcons
-            name="clock-outline"
-            size={24}
-            color="black"
-          />
-        }
-        onPress={() => {
-          setContent(`${content} ${hour}:${minute} ${ampm}`);
-        }}
+        icon={alignment.icon}
+        onPress={() => setAlignment(getNextAlign(alignment))}
         color={theme.colors.background}
       />
     </KeyboardAvoidingView>

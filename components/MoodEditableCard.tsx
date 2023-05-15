@@ -7,7 +7,11 @@ import ThemeContext from "../contexts/ThemeContext";
 import getDates from "../helper/getDates";
 import getNextMood from "../helper/getNextMood";
 import { MoodsData } from "../datas/moods";
+import { KeyboardAlignData } from "../datas/keyboardTools";
+
 import ModalComp from "./Modal";
+import DateModal from "./DateModal";
+import HighlightIcon from "./HighlightIcon";
 
 interface MoodEditableCardProps {
   title: string;
@@ -18,7 +22,8 @@ interface MoodEditableCardProps {
   setDate: (date: Date) => void;
   mood: MoodsData;
   setMood: (mood: MoodsData) => void;
-  textAlign: any;
+  alignment: KeyboardAlignData;
+  highlight: string;
 }
 
 const MoodEditableCard = (props: MoodEditableCardProps) => {
@@ -31,48 +36,14 @@ const MoodEditableCard = (props: MoodEditableCardProps) => {
     setDate,
     mood,
     setMood,
-    textAlign,
+    alignment,
+    highlight,
   } = props;
   const { isEng } = useContext(ThemeContext);
-  const [tempDate, setTempDate] = useState(new Date());
-
-  const alignment =
-    textAlign === "flex-start"
-      ? "left"
-      : textAlign === "flex-end"
-      ? "right"
-      : "center";
-
-  const { year, month, dates } = getDates(date);
-
-  const dateModalContent = (
-    <DateTimePicker
-      testID="dateTimePicker"
-      value={date}
-      mode="date"
-      display="spinner"
-      onChange={(_event, selectedDate) => {
-        setTempDate(selectedDate || new Date());
-      }}
-    />
-  );
-
-  const dateModalTrigger = (
-    <>
-      <Text>
-        {month} {year}
-      </Text>
-      <Text>{dates}</Text>
-    </>
-  );
 
   return (
     <View>
-      <ModalComp
-        onPress={() => setDate(tempDate)}
-        content={dateModalContent}
-        trigger={dateModalTrigger}
-      />
+      <DateModal onPress={(tempDate) => setDate(tempDate)} date={date} />
       <Pressable
         onPress={() => {
           const nextMood = getNextMood(mood);
@@ -87,15 +58,17 @@ const MoodEditableCard = (props: MoodEditableCardProps) => {
         onChangeText={setTitle}
         value={title}
       />
+      <HighlightIcon color={highlight} width={125} height={25} />
+
       <TextInput
         editable
         multiline
         style={[
           styles.content,
-          {
-            alignItems: textAlign,
-            textAlign: alignment,
-          },
+          //   {
+          //     alignItems: alignment.alignItem,
+          //     textAlign: alignment.textAlign,
+          //   },
         ]}
         onChangeText={setContent}
         value={content}

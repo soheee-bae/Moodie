@@ -1,30 +1,20 @@
 import React, { useContext, useState } from "react";
-import {
-  KeyboardAvoidingView,
-  View,
-  StyleSheet,
-  ScrollView,
-  Platform,
-  Text,
-} from "react-native";
-import { Octicons } from "@expo/vector-icons";
-
+import { View, StyleSheet, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Entypo } from "@expo/vector-icons";
-import { IconButton } from "@react-native-material/core";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-
-import ViewContext from "../contexts/ViewContext";
-import ThemeContext from "../contexts/ThemeContext";
-import { RootStackParamList } from "../datas/rootType";
-import { theme } from "../styles/theme";
 
 import BasicTopnav from "../components/BasicNav";
 import CloseModal from "../components/CloseModal";
 import MoodEditableCard from "../components/MoodEditableCard";
-import getDates from "../helper/getDates";
+import KeyboardTool from "../components/KeyboardTool";
+
+import ViewContext from "../contexts/ViewContext";
+import ThemeContext from "../contexts/ThemeContext";
+import { RootStackParamList } from "../datas/rootType";
+import { keyboardAlign } from "../datas/keyboardTools";
+
+import { theme } from "../styles/theme";
 
 const AddMood = ({
   navigation,
@@ -44,8 +34,8 @@ const AddMood = ({
   const [content, setContent] = useState("");
   const [mood, setMood] = useState(initialMood);
   const [date, setDate] = useState(initialDate);
-  const [textAlign, setTextAlign] = useState("flex-start");
-  const { hour, minute, ampm } = getDates(date);
+  const [alignment, setAlignment] = useState(keyboardAlign[0]);
+  const [highlight, setHighlight] = useState("#E1E1E1");
 
   return (
     <View
@@ -75,10 +65,17 @@ const AddMood = ({
           setDate={setDate}
           mood={mood}
           setMood={setMood}
-          textAlign={textAlign}
+          alignment={alignment}
+          highlight={highlight}
         />
       </ScrollView>
-      
+      <KeyboardTool
+        alignment={alignment}
+        setAlignment={setAlignment}
+        content={content}
+        setContent={setContent}
+        setHighlight={setHighlight}
+      />
     </View>
   );
 };

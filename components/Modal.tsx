@@ -27,10 +27,8 @@ const ModalComp = (props: ModalCompProps) => {
   };
 
   const handleOpen = () => {
-    console.log("hereee");
     setModalVisible(true);
   };
-  console.log(modalVisible);
 
   return (
     <>
