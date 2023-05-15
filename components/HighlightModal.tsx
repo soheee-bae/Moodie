@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Pressable } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 import { theme } from "../styles/theme";
 import ModalComp from "./Modal";
@@ -40,7 +40,14 @@ const HightlightModal = (props: HightlightModalProps) => {
     </View>
   );
 
-  const trigger = <Ionicons name="color-palette-outline" size={24} />;
+  const trigger = (
+    <MaterialIcons
+      name="colorize"
+      size={24}
+      color="black"
+      style={{ paddingHorizontal: 7 }}
+    />
+  );
 
   return (
     <ModalComp

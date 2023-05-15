@@ -33,16 +33,22 @@ const KeyboardTool = (props: KeyboardToolProps) => {
   const { hour, minute, ampm } = getDates(new Date());
 
   return (
-    <KeyboardAvoidingView behavior="padding" style={{ borderWidth: 1 }}>
-      <IconButton
-        icon={<MaterialCommunityIcons name="clock-outline" size={24} />}
-        onPress={() => setContent(`${content} ${hour}:${minute} ${ampm}`)}
-        color={theme.colors.background}
-      />
+    <KeyboardAvoidingView behavior="padding" style={styles.keyboardTool}>
       <ImagePickerComp setImg={setImg} />
       <HightlightModal
         highlight={highlight}
         onPress={(tempColor) => setHighlight(tempColor)}
+      />
+      <IconButton
+        icon={
+          <MaterialCommunityIcons
+            name="clock-outline"
+            size={24}
+            color="black"
+          />
+        }
+        onPress={() => setContent(`${content} ${hour}:${minute} ${ampm}`)}
+        color={theme.colors.background}
       />
       {(content === "" || !content) && (
         <IconButton
@@ -58,5 +64,12 @@ const KeyboardTool = (props: KeyboardToolProps) => {
 export default KeyboardTool;
 
 const styles = StyleSheet.create({
-  KeyboardTool: {},
+  keyboardTool: {
+    borderColor: theme.colors.lighterBlack,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    paddingHorizontal: 10,
+  },
 });

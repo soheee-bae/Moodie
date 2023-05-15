@@ -1,7 +1,9 @@
 import React from "react";
-import { Pressable } from "react-native";
+import { IconButton } from "@react-native-material/core";
+
 import * as ImagePicker from "expo-image-picker";
-import { Octicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { theme } from "../styles/theme";
 
 interface ImagePickerProps {
   setImg: (img: string) => void;
@@ -26,8 +28,12 @@ export default function ImagePickerComp(props: ImagePickerProps) {
   };
 
   return (
-    <Pressable onPress={pickImage}>
-      <Octicons name="image" size={24} />
-    </Pressable>
+    <IconButton
+      icon={
+        <MaterialCommunityIcons name="image-outline" size={24} color="black" />
+      }
+      onPress={pickImage}
+      color={theme.colors.background}
+    />
   );
 }

@@ -18,7 +18,7 @@ export const keyboardAlign: KeyboardAlignData[] = [
     icon: (
       <MaterialCommunityIcons
         name="format-align-left"
-        size={24}
+        size={20}
         color="black"
       />
     ),
@@ -29,7 +29,7 @@ export const keyboardAlign: KeyboardAlignData[] = [
     icon: (
       <MaterialCommunityIcons
         name="format-align-center"
-        size={24}
+        size={20}
         color="black"
       />
     ),
@@ -40,7 +40,7 @@ export const keyboardAlign: KeyboardAlignData[] = [
     icon: (
       <MaterialCommunityIcons
         name="format-align-right"
-        size={24}
+        size={20}
         color="black"
       />
     ),

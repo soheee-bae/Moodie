@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 import ModalComp from "./Modal";
 import getDates from "../helper/getDates";
+import FontContext from "../contexts/FontContext";
 
 interface DateModalProps {
   onPress: (tempDate: Date) => void;
@@ -14,6 +15,7 @@ const DateModal = (props: DateModalProps) => {
   const { onPress, date } = props;
   const { year, month, dates } = getDates(date);
   const [tempDate, setTempDate] = useState(new Date());
+  const { fontStyle } = useContext(FontContext);
 
   const content = (
     <DateTimePicker
@@ -28,12 +30,12 @@ const DateModal = (props: DateModalProps) => {
   );
 
   const trigger = (
-    <>
-      <Text>
+    <View style={styles(fontStyle).content}>
+      <Text style={styles(fontStyle).monthYear}>
         {month} {year}
       </Text>
-      <Text>{dates}</Text>
-    </>
+      <Text style={styles(fontStyle).date}>{dates}</Text>
+    </View>
   );
 
   return (
@@ -47,6 +49,22 @@ const DateModal = (props: DateModalProps) => {
 
 export default DateModal;
 
-const styles = StyleSheet.create({
-  content: {},
-});
+const styles = (fontStyle: string) =>
+  StyleSheet.create({
+    content: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 3,
+    },
+    monthYear: {
+      fontSize: 15,
+      fontWeight: "400",
+      fontFamily: fontStyle,
+    },
+
+    date: {
+      fontSize: 20,
+      fontWeight: "bold",
+      fontFamily: fontStyle,
+    },
+  });
