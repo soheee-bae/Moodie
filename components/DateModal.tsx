@@ -54,17 +54,17 @@ const styles = (fontStyle: string) =>
     content: {
       display: "flex",
       flexDirection: "column",
-      gap: 3,
+      gap: 4,
     },
     monthYear: {
       fontSize: 15,
       fontWeight: "400",
-      fontFamily: fontStyle,
+      fontFamily: "Inder_400Regular",
     },
 
     date: {
-      fontSize: 20,
+      fontSize: 23,
       fontWeight: "bold",
-      fontFamily: fontStyle,
+      fontFamily: "Inder_400Regular",
     },
   });

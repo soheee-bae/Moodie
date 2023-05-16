@@ -81,7 +81,7 @@ const MoodEditableCard = (props: MoodEditableCardProps) => {
         {img && (
           <Image
             source={{ uri: img }}
-            style={{ width: "80%", aspectRatio: 1 / 1 }}
+            style={{ width: "100%", aspectRatio: 1 / 1 }}
           />
         )}
       </View>
@@ -143,7 +143,7 @@ const styles = (
       minHeight: 350,
       lineHeight: 25,
       fontSize: fontSizePx,
-      fontStyle: fontStyle,
+      fontFamily: fontStyle,
     },
     image: {
       display: "flex",

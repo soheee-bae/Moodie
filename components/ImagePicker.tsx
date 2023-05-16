@@ -18,7 +18,7 @@ export default function ImagePickerComp(props: ImagePickerProps) {
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
-    });
+    }); 
 
     console.log(result);
 

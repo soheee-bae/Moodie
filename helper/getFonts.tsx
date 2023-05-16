@@ -54,6 +54,7 @@ import {
 } from "@expo-google-fonts/gowun-batang";
 import { CuteFont_400Regular } from "@expo-google-fonts/cute-font";
 import { NanumPenScript_400Regular } from "@expo-google-fonts/nanum-pen-script";
+import { Inder_400Regular } from "@expo-google-fonts/inder";
 
 export const getFonts = async () => {
   await Font.loadAsync({
@@ -91,6 +92,7 @@ export const getFonts = async () => {
     GowunBatang_700Bold,
     CuteFont_400Regular,
     NanumPenScript_400Regular,
+    Inder_400Regular,
   });
 };
 export default getFonts;
