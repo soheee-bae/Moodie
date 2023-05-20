@@ -15,6 +15,17 @@ import { RootStackParamList } from "../datas/rootType";
 import { keyboardAlign } from "../datas/keyboardTools";
 
 import { theme } from "../styles/theme";
+import { uploadData } from "../hooks/uploadData";
+import { MoodsData } from "../datas/moods";
+import { KeyboardAlignData } from "../datas/keyboardTools";
+
+export type DataType = {
+  date: Date;
+  mood: MoodsData;
+  content: string;
+  alignment: KeyboardAlignData;
+  highlight: string;
+};
 
 const AddMood = ({
   navigation,
@@ -37,7 +48,18 @@ const AddMood = ({
   const [img, setImg] = useState("");
   const [alignment, setAlignment] = useState(keyboardAlign[0]);
   const [highlight, setHighlight] = useState("#E1E1E1");
+  const [uploading, setUploading] = useState(false);
 
+  const handleUpload = async () => {
+    const data = {
+      date,
+      mood,
+      content,
+      alignment,
+      highlight,
+    };
+    await uploadData(data, img, setUploading);
+  };
   return (
     <View
       style={[
@@ -78,6 +100,7 @@ const AddMood = ({
         setContent={setContent}
         highlight={highlight}
         setHighlight={setHighlight}
+        img={img}
         setImg={setImg}
       />
     </View>

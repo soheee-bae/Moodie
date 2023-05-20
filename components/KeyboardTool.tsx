@@ -17,6 +17,7 @@ interface KeyboardToolProps {
   setContent: (content: string) => void;
   highlight: string;
   setHighlight: (highlight: string) => void;
+  img: string;
   setImg: (img: string) => void;
 }
 const KeyboardTool = (props: KeyboardToolProps) => {
@@ -27,6 +28,7 @@ const KeyboardTool = (props: KeyboardToolProps) => {
     setContent,
     highlight,
     setHighlight,
+    img,
     setImg,
   } = props;
 
@@ -34,7 +36,7 @@ const KeyboardTool = (props: KeyboardToolProps) => {
 
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.keyboardTool}>
-      <ImagePickerComp setImg={setImg} />
+      <ImagePickerComp img={img} setImg={setImg} />
       <HightlightModal
         highlight={highlight}
         onPress={(tempColor) => setHighlight(tempColor)}
