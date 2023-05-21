@@ -22,7 +22,7 @@ const MoodsList = (props: MoodsListProps) => {
           onPress={(event: GestureResponderEvent) => {
             event.persist();
             navigation.navigate("AddMood", {
-              initialDate: new Date(),
+              initialDate: new Date().toDateString(),
               initialMood: mood,
             });
           }}>

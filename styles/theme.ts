@@ -31,18 +31,18 @@ const palette = {
   brownBackground: "#DDC6B4",
 
   //highlights
-  whiteHighlight: "#E1E1E1",
-  lightPurpleHighlight: "#E6DFF1",
-  lightOrangeHighlight: "#F4D7A7",
-  lightBlueHighlight: "#D0E1F1",
-  purpleHighlight: "#D8CDE9",
-  redHighlight: "#E5C0AD",
-  yellowHighlight: "#ECD584",
-  lightGreenHighlight: "#CCC78C",
-  greenHighlight: "#ACAC88",
-  blueHighlight: "#A9C7E5",
-  lightBrownHighlight: "#CCB89D",
-  brownHighlight: "#D1B199",
+  whiteHighlight: "E1E1E1",
+  lightPurpleHighlight: "E6DFF1",
+  lightOrangeHighlight: "F4D7A7",
+  lightBlueHighlight: "D0E1F1",
+  purpleHighlight: "D8CDE9",
+  redHighlight: "E5C0AD",
+  yellowHighlight: "ECD584",
+  lightGreenHighlight: "CCC78C",
+  greenHighlight: "ACAC88",
+  blueHighlight: "A9C7E5",
+  lightBrownHighlight: "CCB89D",
+  brownHighlight: "D1B199",
 };
 
 export const theme = {

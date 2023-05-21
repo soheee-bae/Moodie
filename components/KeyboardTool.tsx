@@ -39,7 +39,7 @@ const KeyboardTool = (props: KeyboardToolProps) => {
       <ImagePickerComp img={img} setImg={setImg} />
       <HightlightModal
         highlight={highlight}
-        onPress={(tempColor) => setHighlight(tempColor)}
+        onPress={(tempColor) => setHighlight(tempColor.replace("#", ""))}
       />
       <IconButton
         icon={

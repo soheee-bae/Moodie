@@ -7,7 +7,7 @@ export type RootStackParamList = {
   Search: undefined;
   AddCover: undefined;
   AddMood: {
-    initialDate: Date;
+    initialDate: number;
     initialMood: MoodsData;
   };
   BackgroundSetting: undefined;

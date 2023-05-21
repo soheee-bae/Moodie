@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, ActivityIndicator } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Snackbar } from "@react-native-material/core";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Entypo } from "@expo/vector-icons";
 
@@ -14,18 +15,8 @@ import ThemeContext from "../contexts/ThemeContext";
 import { RootStackParamList } from "../datas/rootType";
 import { keyboardAlign } from "../datas/keyboardTools";
 
-import { theme } from "../styles/theme";
 import { uploadData } from "../hooks/uploadData";
-import { MoodsData } from "../datas/moods";
-import { KeyboardAlignData } from "../datas/keyboardTools";
-
-export type DataType = {
-  date: Date;
-  mood: MoodsData;
-  content: string;
-  alignment: KeyboardAlignData;
-  highlight: string;
-};
+import { theme } from "../styles/theme";
 
 const AddMood = ({
   navigation,
@@ -44,22 +35,33 @@ const AddMood = ({
   );
   const [content, setContent] = useState("");
   const [mood, setMood] = useState(initialMood);
-  const [date, setDate] = useState(initialDate);
+  const [date, setDate] = useState(new Date(initialDate));
   const [img, setImg] = useState("");
   const [alignment, setAlignment] = useState(keyboardAlign[0]);
-  const [highlight, setHighlight] = useState("#E1E1E1");
+  const [highlight, setHighlight] = useState("E1E1E1");
   const [uploading, setUploading] = useState(false);
 
   const handleUpload = async () => {
     const data = {
-      date,
-      mood,
+      date: date.toDateString(),
+      mood: mood.value,
+      title,
       content,
-      alignment,
+      alignment: alignment.textAlign,
       highlight,
     };
-    await uploadData(data, img, setUploading);
+
+    await uploadData(data, img, setUploading).then((res) => {
+      navigation.navigate(viewStr);
+      setContent("");
+      setMood(initialMood);
+      setDate(new Date(initialDate));
+      setImg("");
+      setAlignment(keyboardAlign[0]);
+      setHighlight("E1E1E1");
+    });
   };
+
   return (
     <View
       style={[
@@ -74,25 +76,29 @@ const AddMood = ({
         lastIcon={
           <Entypo name="check" size={20} color={theme.colors.lightBlack} />
         }
-        lastPress={() => {
-          navigation.navigate(viewStr);
-        }}
+        lastPress={handleUpload}
       />
-      <ScrollView>
-        <MoodEditableCard
-          title={title}
-          setTitle={setTitle}
-          content={content}
-          setContent={setContent}
-          date={date}
-          setDate={setDate}
-          mood={mood}
-          setMood={setMood}
-          img={img}
-          alignment={alignment}
-          highlight={highlight}
-        />
-      </ScrollView>
+      {uploading ? (
+        <View style={{ height: "100%" }}>
+          <ActivityIndicator size="large" />
+        </View>
+      ) : (
+        <ScrollView>
+          <MoodEditableCard
+            title={title}
+            setTitle={setTitle}
+            content={content}
+            setContent={setContent}
+            date={date}
+            setDate={setDate}
+            mood={mood}
+            setMood={setMood}
+            img={img}
+            alignment={alignment}
+            highlight={highlight}
+          />
+        </ScrollView>
+      )}
       <KeyboardTool
         alignment={alignment}
         setAlignment={setAlignment}

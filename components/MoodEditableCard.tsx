@@ -74,7 +74,7 @@ const MoodEditableCard = (props: MoodEditableCardProps) => {
             onChangeText={setTitle}
             value={title}
           />
-          <HighlightIcon color={highlight} width={125} height={25} />
+          <HighlightIcon color={`#${highlight}`} width={125} height={25} />
         </View>
       </View>
       <View style={styles(textAlign, fontStyle, fontSizePx).image}>

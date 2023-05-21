@@ -33,7 +33,7 @@ const HightlightModal = (props: HightlightModalProps) => {
                   : "transparent",
               },
             ]}>
-            <HighlightIcon color={color} width={120} height={25} />
+            <HighlightIcon color={`#${color}`} width={120} height={25} />
           </Pressable>
         );
       })}
