@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { View, StyleSheet, ScrollView, ActivityIndicator } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Snackbar } from "@react-native-material/core";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Entypo } from "@expo/vector-icons";
 
@@ -17,6 +16,7 @@ import { keyboardAlign } from "../datas/keyboardTools";
 
 import { uploadData } from "../hooks/uploadData";
 import { theme } from "../styles/theme";
+import SnackbarComp from "../components/Snackbar";
 
 const AddMood = ({
   navigation,
@@ -40,6 +40,7 @@ const AddMood = ({
   const [alignment, setAlignment] = useState(keyboardAlign[0]);
   const [highlight, setHighlight] = useState("E1E1E1");
   const [uploading, setUploading] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleUpload = async () => {
     const data = {
@@ -51,7 +52,15 @@ const AddMood = ({
       highlight,
     };
 
-    await uploadData(data, img, setUploading).then((res) => {
+    const res = await uploadData(data, img, setUploading);
+    console.log("res1");
+
+    console.log(res);
+
+    if (res !== null && res !== undefined) {
+      console.log("res");
+      console.log(res);
+      setOpen(true);
       navigation.navigate(viewStr);
       setContent("");
       setMood(initialMood);
@@ -59,7 +68,7 @@ const AddMood = ({
       setImg("");
       setAlignment(keyboardAlign[0]);
       setHighlight("E1E1E1");
-    });
+    }
   };
 
   return (
@@ -108,6 +117,13 @@ const AddMood = ({
         setHighlight={setHighlight}
         img={img}
         setImg={setImg}
+      />
+      <SnackbarComp
+        label={
+          isEng ? "Diary added successfully!" : "오늘의 감정이 등록되었습니다!"
+        }
+        open={open}
+        setOpen={setOpen}
       />
     </View>
   );

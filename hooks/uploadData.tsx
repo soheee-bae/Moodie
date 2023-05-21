@@ -1,9 +1,7 @@
-import { Dispatch, SetStateAction, useContext } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { ref, set } from "firebase/database";
 import { FIRESTORE_DB } from "../firebaseConfig";
 import { uploadImage } from "./uploadImage";
-import ThemeContext from "../contexts/ThemeContext";
-import FontContext from "../contexts/FontContext";
 
 type DataType = {
   date: string;
@@ -21,22 +19,22 @@ export const uploadData = async (
 ) => {
   if (uri) {
     const fileUrl = await uploadImage(uri, setUploading);
-    setData(data, fileUrl);
+
+    let res = await setData(data, fileUrl);
   } else {
     setData(data, "");
   }
 };
 
-function setData(data: DataType, fileUrl: any) {
+async function setData(data: DataType, fileUrl: any) {
   set(ref(FIRESTORE_DB, "diary/" + data.title + data.date), {
     ...data,
     fileUrl,
   })
     .then(() => {
-      return "success";
+      console.log("success!");
     })
     .catch((err) => {
       console.log(err);
-      return "failed";
     });
 }

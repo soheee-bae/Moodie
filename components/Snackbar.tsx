@@ -1,16 +1,23 @@
-import React, { useEffect } from "react";
+import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { View } from "react-native";
 import { Snackbar } from "@react-native-material/core";
 
 interface SnackbarCompProps {
   label: string;
   open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const SnackbarComp = (props: SnackbarCompProps) => {
   const { label, open, setOpen } = props;
 
-  useEffect(() => {setOpen;}, [open]);
+  useEffect(() => {
+    if (open)
+      setTimeout(() => {
+        setOpen(false);
+      }, 1000);
+  }, [open]);
+
   return (
     <View>
       {open ? (
