@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useEffect } from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Snackbar } from "@react-native-material/core";
 
 interface SnackbarCompProps {
@@ -15,7 +15,7 @@ const SnackbarComp = (props: SnackbarCompProps) => {
     if (open)
       setTimeout(() => {
         setOpen(false);
-      }, 1000);
+      }, 2000);
   }, [open]);
 
   return (
@@ -23,10 +23,18 @@ const SnackbarComp = (props: SnackbarCompProps) => {
       {open ? (
         <Snackbar
           message={label}
-          style={{ position: "absolute", start: 16, end: 16, bottom: 16 }}
+          style={{
+            position: "absolute",
+            zIndex: 999,
+            end: 20,
+            start: 20,
+            bottom: 100,
+          }}
         />
       ) : null}
     </View>
   );
 };
 export default SnackbarComp;
+
+const styles = StyleSheet.create({});

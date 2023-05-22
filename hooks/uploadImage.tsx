@@ -41,7 +41,6 @@ export const uploadImage = async (
       },
       function complete() {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setUploading(false);
           resolve(downloadURL);
         });
       }

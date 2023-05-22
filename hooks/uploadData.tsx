@@ -21,20 +21,24 @@ export const uploadData = async (
     const fileUrl = await uploadImage(uri, setUploading);
 
     let res = await setData(data, fileUrl);
+    return res;
   } else {
     setData(data, "");
   }
 };
 
 async function setData(data: DataType, fileUrl: any) {
-  set(ref(FIRESTORE_DB, "diary/" + data.title + data.date), {
-    ...data,
-    fileUrl,
-  })
-    .then(() => {
-      console.log("success!");
+  return new Promise(function (resolve, reject) {
+    set(ref(FIRESTORE_DB, "diary/" + data.title + data.date), {
+      ...data,
+      fileUrl,
     })
-    .catch((err) => {
-      console.log(err);
-    });
+      .then(() => {
+        resolve("success");
+      })
+      .catch((err) => {
+        console.log(err);
+        reject();
+      });
+  });
 }
