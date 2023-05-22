@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Feather, MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
@@ -9,6 +9,11 @@ import ViewContext from "../contexts/ViewContext";
 import ThemeContext from "../contexts/ThemeContext";
 
 import { theme } from "../styles/theme";
+import Calendar from "../components/Calendar";
+import { FullDataType, getAllDatas } from "../api/getAllDatas";
+import { getSortedDatasbyDate } from "../helper/getSortedDatasbyDate";
+import EmptyPlaceholder from "../components/EmptyPlaceholder";
+import LoadingIndicator from "../components/LoadingIndicator";
 
 interface HomeCalendarProps {
   navigation: any;
@@ -19,6 +24,20 @@ const HomeCalendar = (props: HomeCalendarProps) => {
   const insets = useSafeAreaInsets();
   const { setView } = useContext(ViewContext);
   const { background } = useContext(ThemeContext);
+
+  const [datas, setDatas] = useState<FullDataType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  async function getDatas() {
+    const data = (await getAllDatas()) as FullDataType[];
+    const sortedData = await getSortedDatasbyDate(data);
+    setIsLoading(false);
+    setDatas([]);
+  }
+
+  useEffect(() => {
+    getDatas();
+  }, []);
 
   return (
     <View
@@ -46,7 +65,13 @@ const HomeCalendar = (props: HomeCalendarProps) => {
           />
         }
       />
-      <View></View>
+      {isLoading ? (
+        <LoadingIndicator />
+      ) : !isLoading && datas.length === 0 ? (
+        <EmptyPlaceholder />
+      ) : (
+        <Calendar datas={datas} />
+      )}
       <BasicNav
         firstIcon={
           <Ionicons

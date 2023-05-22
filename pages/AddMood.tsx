@@ -80,42 +80,48 @@ const AddMood = ({
         },
         styles(background).addMode,
       ]}>
-      <BasicTopnav
-        firstIcon={<CloseModal onPress={() => navigation.navigate(viewStr)} />}
-        lastIcon={
-          <Entypo name="check" size={20} color={theme.colors.lightBlack} />
-        }
-        lastPress={handleUpload}
-      />
       {uploading ? (
         <LoadingIndicator />
       ) : (
-        <ScrollView>
-          <MoodEditableCard
-            title={title}
-            setTitle={setTitle}
+        <>
+          <BasicTopnav
+            firstIcon={
+              <CloseModal onPress={() => navigation.navigate(viewStr)} />
+            }
+            lastIcon={
+              <Entypo name="check" size={20} color={theme.colors.lightBlack} />
+            }
+            lastPress={handleUpload}
+          />
+
+          <ScrollView>
+            <MoodEditableCard
+              title={title}
+              setTitle={setTitle}
+              content={content}
+              setContent={setContent}
+              date={date}
+              setDate={setDate}
+              mood={mood}
+              setMood={setMood}
+              img={img}
+              alignment={alignment}
+              highlight={highlight}
+            />
+          </ScrollView>
+          <KeyboardTool
+            alignment={alignment}
+            setAlignment={setAlignment}
             content={content}
             setContent={setContent}
-            date={date}
-            setDate={setDate}
-            mood={mood}
-            setMood={setMood}
-            img={img}
-            alignment={alignment}
             highlight={highlight}
+            setHighlight={setHighlight}
+            img={img}
+            setImg={setImg}
           />
-        </ScrollView>
+        </>
       )}
-      <KeyboardTool
-        alignment={alignment}
-        setAlignment={setAlignment}
-        content={content}
-        setContent={setContent}
-        highlight={highlight}
-        setHighlight={setHighlight}
-        img={img}
-        setImg={setImg}
-      />
+
       <SnackbarComp
         label={
           isEng ? "Diary added successfully!" : "오늘의 감정이 등록되었습니다!"

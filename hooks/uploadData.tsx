@@ -1,9 +1,9 @@
-import { Dispatch, SetStateAction, useState } from "react";
-import { ref, set } from "firebase/database";
-import { FIRESTORE_DB } from "../firebaseConfig";
-import { uploadImage } from "./uploadImage";
+import { Dispatch, SetStateAction } from "react";
 
-type DataType = {
+import { uploadImage } from "./uploadImage";
+import { setDatas } from "../api/setDatas";
+
+export type DataType = {
   date: string;
   mood: number;
   title: string;
@@ -19,26 +19,10 @@ export const uploadData = async (
 ) => {
   if (uri) {
     const fileUrl = await uploadImage(uri, setUploading);
-
-    let res = await setData(data, fileUrl);
+    let res = await setDatas(data, fileUrl, setUploading);
     return res;
   } else {
-    setData(data, "");
+    let res = await setDatas(data, "", setUploading);
+    return res;
   }
 };
-
-async function setData(data: DataType, fileUrl: any) {
-  return new Promise(function (resolve, reject) {
-    set(ref(FIRESTORE_DB, "diary/" + data.title + data.date), {
-      ...data,
-      fileUrl,
-    })
-      .then(() => {
-        resolve("success");
-      })
-      .catch((err) => {
-        console.log(err);
-        reject();
-      });
-  });
-}

@@ -28,7 +28,7 @@ const SnackbarComp = (props: SnackbarCompProps) => {
             zIndex: 999,
             end: 20,
             start: 20,
-            bottom: 100,
+            bottom: 10,
           }}
         />
       ) : null}
