@@ -32,7 +32,7 @@ const HomeCalendar = (props: HomeCalendarProps) => {
     const data = (await getAllDatas()) as FullDataType[];
     const sortedData = await getSortedDatasbyDate(data);
     setIsLoading(false);
-    setDatas([]);
+    setDatas(sortedData);
   }
 
   useEffect(() => {
