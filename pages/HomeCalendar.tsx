@@ -33,7 +33,7 @@ const HomeCalendar = (props: HomeCalendarProps) => {
 
   const [currentDate, setCurrentDate] = useState({
     year: new Date().getFullYear(),
-    month: new Date().getMonth(),
+    month: new Date().getMonth(), //MAy -> 4
   });
 
   async function getDatas() {
@@ -43,7 +43,7 @@ const HomeCalendar = (props: HomeCalendarProps) => {
     const currentData = sortedData.find((data: FullDataType) => {
       const year = parseInt(data.newDate.slice(0, 4));
       const month = parseInt(data.newDate.slice(-2));
-      return year === currentDate.year && month === currentDate.month;
+      return year === currentDate.year && month === currentDate.month + 1;
     });
 
     setIsLoading(false);
@@ -84,12 +84,9 @@ const HomeCalendar = (props: HomeCalendarProps) => {
       <HomeContent
         isLoading={isLoading}
         datas={datas || []}
-        currentDate={currentDate}>
-        <Calendar
-          datas={datas}
-          currentData={currentData}
-          currentDate={currentDate}
-        />
+        currentDate={currentDate}
+        setCurrentDate={setCurrentDate}>
+        <Calendar currentData={currentData} currentDate={currentDate} />
       </HomeContent>
       <BasicNav
         firstIcon={

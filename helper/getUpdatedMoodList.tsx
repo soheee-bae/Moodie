@@ -17,7 +17,5 @@ export const getUpdatedMoodList = async (
     return emotion ? emotion : null;
   });
 
-  console.log("calendarList");
-  console.log(calendarList);
   return calendarList;
 };

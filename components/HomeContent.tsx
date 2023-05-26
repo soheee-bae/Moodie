@@ -1,33 +1,40 @@
-import { View, StyleSheet, Text, Image } from "react-native";
+import { View, StyleSheet, Text, Image, Button } from "react-native";
 import LoadingIndicator from "./LoadingIndicator";
 import EmptyPlaceholder from "./EmptyPlaceholder";
 import { FullDataType } from "../api/getAllDatas";
 import { convertMonth } from "../helper/getDates";
-import { ReactNode } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 import { SvgXml } from "react-native-svg";
+import { theme } from "../styles/theme";
+import { MaterialIcons } from "@expo/vector-icons";
+import { IconButton } from "@react-native-material/core";
 
-const ChevronLeft = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M15 18L9 12L15 6" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-`;
-
-const ChevronRight = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M9 18L15 12L9 6" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-
-`;
 interface HomeContentProps {
   isLoading: boolean;
   datas: FullDataType[];
   currentDate: { year: number; month: number };
+  setCurrentDate: Dispatch<SetStateAction<{ year: number; month: number }>>;
   children: ReactNode;
 }
 
 const HomeContent = (props: HomeContentProps) => {
-  const { isLoading, datas, currentDate, children } = props;
+  const { isLoading, datas, currentDate, setCurrentDate, children } = props;
 
   const month = convertMonth(currentDate.month);
   const year = currentDate.year;
+
+  const prevMonth = () => {
+    setCurrentDate({
+      ...currentDate,
+      month: currentDate.month === 0 ? 11 : currentDate.month - 1,
+    });
+  };
+  const nextMonth = () => {
+    setCurrentDate({
+      ...currentDate,
+      month: currentDate.month === 11 ? 0 : currentDate.month + 1,
+    });
+  };
 
   return (
     <View>
@@ -38,11 +45,32 @@ const HomeContent = (props: HomeContentProps) => {
       ) : (
         <View style={styles.container}>
           <View style={styles.header}>
-            <SvgXml xml={ChevronLeft} width={24} height={24} />
-            <Text>
-              {month} {year}
-            </Text>
-            <SvgXml xml={ChevronRight} width={24} height={24} />
+            <IconButton
+              icon={
+                <MaterialIcons
+                  name="keyboard-arrow-left"
+                  size={24}
+                  color={theme.colors.lightBlack}
+                />
+              }
+              onPress={prevMonth}
+              color={theme.colors.background}
+            />
+            <View style={styles.headerDate}>
+              <Text style={styles.date}>{month.toUpperCase()}</Text>
+              <Text style={styles.date}> {year}</Text>
+            </View>
+            <IconButton
+              icon={
+                <MaterialIcons
+                  name="keyboard-arrow-right"
+                  size={24}
+                  color={theme.colors.lightBlack}
+                />
+              }
+              onPress={nextMonth}
+              color={theme.colors.background}
+            />
           </View>
           {children}
         </View>
@@ -54,12 +82,29 @@ const HomeContent = (props: HomeContentProps) => {
 export default HomeContent;
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  container: {
+    flex: 0.8,
+    gap: 40,
+  },
   header: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    gap: 80,
+    paddingHorizontal: 20,
+    paddingBottom: 20,
+  },
+  headerDate: {
+    display: "flex",
+    width: 100,
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    gap: 5,
+  },
+  date: {
+    fontFamily: "Inder_400Regular",
+    fontSize: theme.typography.lg,
   },
 });
