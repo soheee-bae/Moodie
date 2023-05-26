@@ -14,6 +14,8 @@ import { FullDataType, getAllDatas } from "../api/getAllDatas";
 import { getSortedDatasbyDate } from "../helper/getSortedDatasbyDate";
 import EmptyPlaceholder from "../components/EmptyPlaceholder";
 import LoadingIndicator from "../components/LoadingIndicator";
+import { DataType } from "../hooks/uploadData";
+import HomeContent from "../components/HomeContent";
 
 interface HomeCalendarProps {
   navigation: any;
@@ -26,18 +28,32 @@ const HomeCalendar = (props: HomeCalendarProps) => {
   const { background } = useContext(ThemeContext);
 
   const [datas, setDatas] = useState<FullDataType[]>([]);
+  const [currentData, setCurrentData] = useState<FullDataType | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [currentDate, setCurrentDate] = useState({
+    year: new Date().getFullYear(),
+    month: new Date().getMonth(),
+  });
+
   async function getDatas() {
-    const data = (await getAllDatas()) as FullDataType[];
+    const data = (await getAllDatas()) as DataType[];
     const sortedData = await getSortedDatasbyDate(data);
+
+    const currentData = sortedData.find((data: FullDataType) => {
+      const year = parseInt(data.newDate.slice(0, 4));
+      const month = parseInt(data.newDate.slice(-2));
+      return year === currentDate.year && month === currentDate.month;
+    });
+
     setIsLoading(false);
+    setCurrentData(currentData);
     setDatas(sortedData);
   }
 
   useEffect(() => {
     getDatas();
-  }, []);
+  }, [currentDate]);
 
   return (
     <View
@@ -65,13 +81,16 @@ const HomeCalendar = (props: HomeCalendarProps) => {
           />
         }
       />
-      {isLoading ? (
-        <LoadingIndicator />
-      ) : !isLoading && datas.length === 0 ? (
-        <EmptyPlaceholder />
-      ) : (
-        <Calendar datas={datas} />
-      )}
+      <HomeContent
+        isLoading={isLoading}
+        datas={datas || []}
+        currentDate={currentDate}>
+        <Calendar
+          datas={datas}
+          currentData={currentData}
+          currentDate={currentDate}
+        />
+      </HomeContent>
       <BasicNav
         firstIcon={
           <Ionicons

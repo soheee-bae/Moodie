@@ -2,9 +2,9 @@ import { ref, child, get } from "firebase/database";
 import { FIRESTORE_DB } from "../firebaseConfig";
 import { DataType } from "../hooks/uploadData";
 
-export interface FullDataType extends DataType {
-  name: string;
-  fullUrl: string;
+export interface FullDataType {
+  data: DataType[];
+  newDate: string;
 }
 
 export const getAllDatas = async () => {

@@ -17,7 +17,7 @@ const getDates = (dateData: Date) => {
 };
 export default getDates;
 
-function convertMonth(month: number) {
+export function convertMonth(month: number) {
   switch (month) {
     case 0:
       return "Jan";

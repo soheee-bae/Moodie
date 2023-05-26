@@ -29,7 +29,7 @@
     "@expo-google-fonts/sunflower": "^0.2.3",
     "@expo-google-fonts/turret-road": "^0.2.3",
     "@miblanchard/react-native-slider": "^2.3.1",
-    "@react-native-community/datetimepicker": "^7.1.0",
+    "@react-native-community/datetimepicker": "6.7.3",
     "@react-native-community/slider": "^4.4.2",
     "@react-native-material/core": "^1.3.7",
     "@react-navigation/bottom-tabs": "^6.5.7",
@@ -46,7 +46,7 @@
     "firebase-admin": "^11.8.0",
     "firebase-tools": "^12.1.0",
     "react": "18.2.0",
-    "react-native": "^0.71.7",
+    "react-native": "0.71.8",
     "react-native-css-transformer": "^1.2.4",
     "react-native-date-picker": "^4.2.13",
     "react-native-image-picker": "^5.3.1",
@@ -55,13 +55,13 @@
     "react-native-screens": "~3.20.0",
     "react-native-slider": "^0.11.0",
     "react-native-snackbar": "^2.6.2",
-    "react-native-svg": "13.4.0",
-    "react-native-svg-transformer": "^1.0.0"
+    "react-native-svg": "^13.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~18.0.14",
     "css-loader": "^6.7.3",
+    "react-native-svg-transformer": "^1.0.0",
     "typescript": "^4.9.4"
   },
   "private": true

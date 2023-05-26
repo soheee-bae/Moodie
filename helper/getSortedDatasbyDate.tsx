@@ -1,6 +1,6 @@
-import { FullDataType } from "../api/getAllDatas";
+import { DataType } from "../hooks/uploadData";
 
-export const getSortedDatasbyDate = async (datas: FullDataType[]) => {
+export const getSortedDatasbyDate = async (datas: DataType[]) => {
   const sortedData = datas.sort((a, b) => {
     return new Date(a.date).valueOf() - new Date(b.date).valueOf();
   });

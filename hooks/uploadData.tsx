@@ -10,6 +10,8 @@ export type DataType = {
   content: string;
   alignment: "center" | "left" | "right" | undefined;
   highlight: string;
+  name?: string;
+  fileUrl?: string;
 };
 
 export const uploadData = async (

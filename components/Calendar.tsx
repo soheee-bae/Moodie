@@ -4,38 +4,32 @@ import { FullDataType, getAllDatas } from "../api/getAllDatas";
 import { Moods } from "../datas/moods";
 import { getSortedDatasbyDate } from "../helper/getSortedDatasbyDate";
 import { getDaysInMonth } from "../helper/getDaysInMonth";
+import { getUpdatedMoodList } from "../helper/getUpdatedMoodList";
+import { update } from "firebase/database";
+import { DataType } from "../hooks/uploadData";
 
 interface CalendarProps {
   datas: FullDataType[];
+  currentData: FullDataType | null;
+  currentDate: { year: number; month: number };
 }
 
 const Calendar = (props: CalendarProps) => {
-  const { datas } = props;
+  const { datas, currentData, currentDate } = props;
+  const [updatedData, setUpdatedData] = useState<(DataType | null)[]>([]);
 
-  console.log(datas);
-  return (
-    <ScrollView style={styles.container}>
-      {datas.map((data: any) => {
-          const info = data.data;
-          const dates = getDaysInMonth(data.newDate.)
-        return (
-          <View style={styles.content}>
-            <Text>{data.newDate}</Text>
-            <View style={styles.innerContent}>
-              {info.map((dataItem: any) => {
-                return (
-                  <Image
-                    source={Moods[dataItem.mood]?.file}
-                    style={styles.mood}
-                  />
-                );
-              })}
-            </View>
-          </View>
-        );
-      })}
-    </ScrollView>
-  );
+  async function getUpdatedData() {
+    const updatedData = currentData
+      ? await getUpdatedMoodList(currentData, currentDate)
+      : [];
+    if (updatedData) setUpdatedData(updatedData);
+  }
+
+  useEffect(() => {
+    getUpdatedData();
+  }, [currentDate]);
+
+  return <ScrollView style={styles.container}></ScrollView>;
 };
 
 export default Calendar;
@@ -47,17 +41,5 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     borderWidth: 2,
     width: "100%",
-  },
-  content: {
-    flex: 1,
-    borderWidth: 1,
-  },
-  innerContent: {
-    flex: 1,
-  },
-  mood: {
-    borderWidth: 2,
-    height: 40,
-    width: 40,
   },
 });
