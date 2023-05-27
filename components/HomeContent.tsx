@@ -83,16 +83,18 @@ export default HomeContent;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.8,
-    gap: 40,
+    height: "auto",
+    maxHeight: "86%",
+    borderWidth: 2,
   },
   header: {
     display: "flex",
     flexDirection: "row",
+    justifyContent: "center",
     alignItems: "center",
-    justifyContent: "space-between",
+    gap: 50,
     paddingHorizontal: 20,
-    paddingBottom: 20,
+    marginVertical: 20,
   },
   headerDate: {
     display: "flex",

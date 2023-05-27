@@ -5,11 +5,6 @@ import { Moods } from "../datas/moods";
 import { getDaysInMonth } from "../helper/getDaysInMonth";
 import { getUpdatedMoodList } from "../helper/getUpdatedMoodList";
 import { DataType } from "../hooks/uploadData";
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  SlideInRight,
-} from "react-native-reanimated";
 
 interface CalendarProps {
   currentData: FullDataType | null;
@@ -34,7 +29,7 @@ const Calendar = (props: CalendarProps) => {
   }, [currentDate, currentData]);
 
   return (
-    <Animated.View entering={SlideInRight} style={styles.container}>
+    <View style={styles.container}>
       {updatedData.map((data, index) => (
         <View style={styles.content}>
           <Text style={styles.num}>{index + 1}</Text>
@@ -45,7 +40,7 @@ const Calendar = (props: CalendarProps) => {
           )}
         </View>
       ))}
-    </Animated.View>
+    </View>
   );
 };
 
@@ -57,6 +52,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     width: "100%",
+    marginTop: 25,
   },
   content: {
     paddingHorizontal: 5,

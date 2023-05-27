@@ -9,6 +9,9 @@ import ViewContext from "../contexts/ViewContext";
 import ThemeContext from "../contexts/ThemeContext";
 
 import { theme } from "../styles/theme";
+import HomeContent from "../components/HomeContent";
+import DataContext from "../contexts/DataContext";
+import CardsLists from "../components/CardsLists";
 
 interface HomeListProps {
   navigation: any;
@@ -19,6 +22,8 @@ const HomeList = (props: HomeListProps) => {
   const insets = useSafeAreaInsets();
   const { setView } = useContext(ViewContext);
   const { background } = useContext(ThemeContext);
+  const { datas, currentData, isLoading, currentDate, setCurrentDate } =
+    useContext(DataContext);
 
   return (
     <View
@@ -42,7 +47,13 @@ const HomeList = (props: HomeListProps) => {
           navigation.navigate("HomeCalendar");
         }}
       />
-      <View></View>
+      <HomeContent
+        isLoading={isLoading}
+        datas={datas || []}
+        currentDate={currentDate}
+        setCurrentDate={setCurrentDate}>
+        <CardsLists currentData={currentData} />
+      </HomeContent>
       <BasicNav
         firstIcon={
           <Ionicons

@@ -48,7 +48,7 @@ export function convertMonth(month: number) {
   }
 }
 
-function convertDay(day: number) {
+export function convertDay(day: number) {
   const { isEng } = useContext(ThemeContext);
 
   switch (day) {

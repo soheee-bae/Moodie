@@ -22,6 +22,7 @@ import LanguageSetting from "./pages/LanguageSetting";
 import FontSetting from "./pages/FontSetting";
 import AddMood from "./pages/AddMood";
 import { RootStackParamList } from "./datas/rootType";
+import { DataContextProvider } from "./contexts/DataContext";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
@@ -47,44 +48,46 @@ export default function App() {
     <SafeAreaProvider>
       <ThemeContextProvider>
         <FontContextProvider>
-          <ViewContextProvider>
-            <NavigationContainer>
-              <Stack.Navigator
-                initialRouteName="HomeCalendar"
-                screenOptions={{ headerShown: false }}>
-                <Stack.Screen name="HomeCalendar">
-                  {() => (
-                    <Tab.Navigator
-                      initialRouteName="HomeCalendar"
-                      tabBar={() => null}
-                      screenOptions={{ headerShown: false }}>
-                      <Stack.Screen
-                        name="HomeCalendar"
-                        component={HomeCalendar}
-                      />
-                      <Stack.Screen name="HomeList" component={HomeList} />
-                      <Stack.Screen name="Settings" component={Setting} />
-                      <Stack.Screen name="Search" component={Search} />
-                      <Stack.Screen name="AddCover" component={AddCover} />
-                      <Stack.Screen name="AddMood" component={AddMood} />
-                      <Stack.Screen
-                        name="BackgroundSetting"
-                        component={BackgroundSetting}
-                      />
-                      <Stack.Screen
-                        name="LanguageSetting"
-                        component={LanguageSetting}
-                      />
-                      <Stack.Screen
-                        name="FontSetting"
-                        component={FontSetting}
-                      />
-                    </Tab.Navigator>
-                  )}
-                </Stack.Screen>
-              </Stack.Navigator>
-            </NavigationContainer>
-          </ViewContextProvider>
+          <DataContextProvider>
+            <ViewContextProvider>
+              <NavigationContainer>
+                <Stack.Navigator
+                  initialRouteName="HomeCalendar"
+                  screenOptions={{ headerShown: false }}>
+                  <Stack.Screen name="HomeCalendar">
+                    {() => (
+                      <Tab.Navigator
+                        initialRouteName="HomeCalendar"
+                        tabBar={() => null}
+                        screenOptions={{ headerShown: false }}>
+                        <Stack.Screen
+                          name="HomeCalendar"
+                          component={HomeCalendar}
+                        />
+                        <Stack.Screen name="HomeList" component={HomeList} />
+                        <Stack.Screen name="Settings" component={Setting} />
+                        <Stack.Screen name="Search" component={Search} />
+                        <Stack.Screen name="AddCover" component={AddCover} />
+                        <Stack.Screen name="AddMood" component={AddMood} />
+                        <Stack.Screen
+                          name="BackgroundSetting"
+                          component={BackgroundSetting}
+                        />
+                        <Stack.Screen
+                          name="LanguageSetting"
+                          component={LanguageSetting}
+                        />
+                        <Stack.Screen
+                          name="FontSetting"
+                          component={FontSetting}
+                        />
+                      </Tab.Navigator>
+                    )}
+                  </Stack.Screen>
+                </Stack.Navigator>
+              </NavigationContainer>
+            </ViewContextProvider>
+          </DataContextProvider>
         </FontContextProvider>
       </ThemeContextProvider>
     </SafeAreaProvider>
