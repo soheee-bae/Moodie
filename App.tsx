@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { NavigationContainer, RouteProp } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -21,6 +21,8 @@ import BackgroundSetting from "./pages/BackgroundSetting";
 import LanguageSetting from "./pages/LanguageSetting";
 import FontSetting from "./pages/FontSetting";
 import AddMood from "./pages/AddMood";
+import Details from "./pages/Details";
+
 import { RootStackParamList } from "./datas/rootType";
 import { DataContextProvider } from "./contexts/DataContext";
 
@@ -81,6 +83,7 @@ export default function App() {
                           name="FontSetting"
                           component={FontSetting}
                         />
+                        <Stack.Screen name="Details" component={Details} />
                       </Tab.Navigator>
                     )}
                   </Stack.Screen>

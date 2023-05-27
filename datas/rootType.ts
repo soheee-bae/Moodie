@@ -1,3 +1,4 @@
+import { DataType } from "../hooks/uploadData";
 import { MoodsData } from "./moods";
 
 export type RootStackParamList = {
@@ -13,4 +14,7 @@ export type RootStackParamList = {
   BackgroundSetting: undefined;
   LanguageSetting: undefined;
   FontSetting: undefined;
+  Details: {
+    moodData: DataType;
+  };
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView, Pressable } from "react-native";
 
 import { FullDataType } from "../api/getAllDatas";
 import { DataType } from "../hooks/uploadData";
@@ -8,10 +8,11 @@ import CardsItem from "./CardsItem";
 
 interface CardsListsProps {
   currentData: FullDataType | null;
+  navigation: any;
 }
 
 const CardsLists = (props: CardsListsProps) => {
-  const { currentData } = props;
+  const { currentData, navigation } = props;
 
   const datas = currentData?.data;
 
@@ -21,7 +22,15 @@ const CardsLists = (props: CardsListsProps) => {
     ) : (
       <ScrollView style={styles.container}>
         {datas?.map((data: DataType) => (
-          <CardsItem data={data} />
+          <Pressable
+            onPress={(event) => {
+              event.persist();
+              navigation.navigate("Details", {
+                moodData: data,
+              });
+            }}>
+            <CardsItem data={data} />
+          </Pressable>
         ))}
       </ScrollView>
     );

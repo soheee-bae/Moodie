@@ -12,11 +12,11 @@ import ThemeContext from "../contexts/ThemeContext";
 import getNextMood from "../helper/getNextMood";
 import { MoodsData } from "../datas/moods";
 import { KeyboardAlignData } from "../datas/keyboardTools";
+import { theme } from "../styles/theme";
 
 import DateModal from "./DateModal";
 import HighlightIcon from "./HighlightIcon";
 import FontContext from "../contexts/FontContext";
-import { theme } from "../styles/theme";
 
 interface MoodEditableCardProps {
   title: string;
@@ -50,6 +50,7 @@ const MoodEditableCard = (props: MoodEditableCardProps) => {
   const { fontStyle, fontSizePx } = useContext(FontContext);
 
   const textAlign = alignment.textAlign;
+
   return (
     <ScrollView style={styles(textAlign, fontStyle, fontSizePx).container}>
       <DateModal onPress={(tempDate) => setDate(tempDate)} date={date} />

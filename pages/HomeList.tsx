@@ -52,7 +52,7 @@ const HomeList = (props: HomeListProps) => {
         datas={datas || []}
         currentDate={currentDate}
         setCurrentDate={setCurrentDate}>
-        <CardsLists currentData={currentData} />
+        <CardsLists currentData={currentData} navigation={navigation} />
       </HomeContent>
       <BasicNav
         firstIcon={
