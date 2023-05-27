@@ -45,6 +45,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 10,
-    height: 52,
+    flex: 0.06,
   },
 });

@@ -94,7 +94,7 @@ const AddMood = ({
             lastPress={handleUpload}
           />
 
-          <ScrollView>
+          <ScrollView style={styles(background).content}>
             <MoodEditableCard
               title={title}
               setTitle={setTitle}
@@ -141,5 +141,8 @@ const styles = (background: string) =>
       flex: 1,
       backgroundColor: background,
       width: "100%",
+    },
+    content: {
+      flex: 0.94,
     },
   });

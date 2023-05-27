@@ -39,6 +39,7 @@ const Search = (props: SearchProps) => {
         firstPress={() => navigation.navigate(view)}
         content={isEng ? "Search" : "검색"}
       />
+      <View style={styles(background).content}></View>
     </View>
   );
 };
@@ -51,5 +52,8 @@ const styles = (background: string) =>
       flex: 1,
       backgroundColor: background,
       width: "100%",
+    },
+    content: {
+      flex: 0.94,
     },
   });

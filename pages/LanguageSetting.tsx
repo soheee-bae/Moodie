@@ -39,6 +39,7 @@ const LanguageSetting = (props: LanguageSettingProps) => {
       />
       <FlatList
         data={languages}
+        style={styles(background).content}
         renderItem={({ item }) => (
           <LanguageList
             name={(isEng ? item.engLabel : item.korLabel) || ""}
@@ -59,5 +60,8 @@ const styles = (background: string) =>
       flex: 1,
       backgroundColor: background,
       width: "100%",
+    },
+    content: {
+      flex: 0.94,
     },
   });

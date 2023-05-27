@@ -5,7 +5,6 @@ import {
   ScrollView,
   View,
 } from "react-native";
-
 import ThemeContext from "../contexts/ThemeContext";
 import { theme } from "../styles/theme";
 import CheckIcon from "./CheckIcon";

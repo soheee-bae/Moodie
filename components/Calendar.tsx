@@ -52,11 +52,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     width: "100%",
-    marginTop: 25,
+    marginTop: 35,
   },
   content: {
     paddingHorizontal: 5,
-    paddingVertical: 10,
+    paddingVertical: 13,
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",

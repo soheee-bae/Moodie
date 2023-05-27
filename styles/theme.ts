@@ -15,6 +15,7 @@ const palette = {
   lightBlack: "#444444",
   lighterBlack: "#575757",
   lightestBlack: "#696969",
+  gray: "#797979",
 
   // backgrounds
   whiteBackground: "#EEEEEE",
@@ -61,6 +62,7 @@ export const theme = {
     lightBlack: palette.lightBlack,
     lighterBlack: palette.lighterBlack,
     lightestBlack: palette.lightestBlack,
+    gray: palette.gray,
     white: palette.white,
   },
   background: {

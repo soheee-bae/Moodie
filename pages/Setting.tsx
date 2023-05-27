@@ -43,6 +43,7 @@ const Setting = (props: SettingProps) => {
       />
       <FlatList
         data={settings}
+        style={styles(background).content}
         renderItem={({ item }) => (
           <SettingItem
             name={(isEng ? item.engname : item.korname) || ""}
@@ -65,5 +66,8 @@ const styles = (background: string) =>
       flex: 1,
       backgroundColor: background,
       width: "100%",
+    },
+    content: {
+      flex: 0.94,
     },
   });

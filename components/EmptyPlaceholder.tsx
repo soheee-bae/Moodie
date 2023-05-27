@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, ViewStyle } from "react-native";
 import ThemeContext from "../contexts/ThemeContext";
 import { Moods } from "../datas/moods";
+import { theme } from "../styles/theme";
 
 const EmptyPlaceholder = () => {
   const { isEng } = useContext(ThemeContext);
@@ -27,11 +28,11 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   mood: {
-    height: 70,
+    height: 40,
     aspectRatio: 1 / 1,
   },
   text: {
-    fontSize: 15,
-    fontWeight: "500",
+    fontSize: theme.typography.md,
+    fontWeight: "400",
   },
 });

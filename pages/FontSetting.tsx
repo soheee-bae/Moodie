@@ -48,7 +48,7 @@ const FontSetting = (props: FontSettingProps) => {
       <View style={styles(background).slider}>
         <FontSlider />
       </View>
-      <ScrollView style={styles(background).lists}>
+      <View style={styles(background).lists}>
         <FlatList
           data={fontLists}
           renderItem={({ item }) => (
@@ -56,7 +56,7 @@ const FontSetting = (props: FontSettingProps) => {
           )}
           keyExtractor={(item) => item.value}
         />
-      </ScrollView>
+      </View>
     </View>
   );
 };
@@ -70,7 +70,7 @@ const styles = (background: string) =>
       backgroundColor: background,
       width: "100%",
     },
-    slider: { flex: 0.2 },
-    preview: { flex: 0.5 },
-    lists: { flex: 2 },
+    slider: { flex: 0.06 },
+    preview: { flex: 0.28 },
+    lists: { flex: 0.6 },
   });
