@@ -55,11 +55,11 @@ const HomeContent = (props: HomeContentProps) => {
                 <MaterialIcons
                   name="keyboard-arrow-left"
                   size={24}
-                  color={background}
+                  color={theme.colors.lightBlack}
                 />
               }
               onPress={prevMonth}
-              color={theme.colors.background}
+              color={background}
             />
             <View style={styles.headerDate}>
               <Text style={{ fontSize: fontSizePx, fontFamily: fontStyle }}>
