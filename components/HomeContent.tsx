@@ -1,14 +1,15 @@
-import { View, StyleSheet, Text, Image, Button } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
+import { Dispatch, ReactNode, SetStateAction, useContext } from "react";
+import { MaterialIcons } from "@expo/vector-icons";
+import { IconButton } from "@react-native-material/core";
+
 import LoadingIndicator from "./LoadingIndicator";
 import EmptyPlaceholder from "./EmptyPlaceholder";
 import { FullDataType } from "../api/getAllDatas";
-import { convertMonth } from "../helper/getDates";
-import { Dispatch, ReactNode, SetStateAction, useContext } from "react";
-import { SvgXml } from "react-native-svg";
-import { theme } from "../styles/theme";
-import { MaterialIcons } from "@expo/vector-icons";
-import { IconButton } from "@react-native-material/core";
 import FontContext from "../contexts/FontContext";
+import { convertMonth } from "../helper/getDates";
+import { theme } from "../styles/theme";
+import ThemeContext from "../contexts/ThemeContext";
 
 interface HomeContentProps {
   isLoading: boolean;
@@ -21,6 +22,7 @@ interface HomeContentProps {
 const HomeContent = (props: HomeContentProps) => {
   const { isLoading, datas, currentDate, setCurrentDate, children } = props;
   const { fontStyle, fontSizePx } = useContext(FontContext);
+  const { background } = useContext(ThemeContext);
 
   const month = convertMonth(currentDate.month);
   const year = currentDate.year;
@@ -31,6 +33,7 @@ const HomeContent = (props: HomeContentProps) => {
       month: currentDate.month === 0 ? 11 : currentDate.month - 1,
     });
   };
+
   const nextMonth = () => {
     setCurrentDate({
       ...currentDate,
@@ -52,7 +55,7 @@ const HomeContent = (props: HomeContentProps) => {
                 <MaterialIcons
                   name="keyboard-arrow-left"
                   size={24}
-                  color={theme.colors.lightBlack}
+                  color={background}
                 />
               }
               onPress={prevMonth}
@@ -75,7 +78,7 @@ const HomeContent = (props: HomeContentProps) => {
                 />
               }
               onPress={nextMonth}
-              color={theme.colors.background}
+              color={background}
             />
           </View>
           {children}

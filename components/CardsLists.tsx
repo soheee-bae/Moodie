@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { StyleSheet, ScrollView } from "react-native";
 
 import { FullDataType } from "../api/getAllDatas";
 import { DataType } from "../hooks/uploadData";
-import FontContext from "../contexts/FontContext";
 import EmptyPlaceholder from "./EmptyPlaceholder";
 import CardsItem from "./CardsItem";
 
@@ -13,7 +12,6 @@ interface CardsListsProps {
 
 const CardsLists = (props: CardsListsProps) => {
   const { currentData } = props;
-  const { fontStyle, fontSizePx } = useContext(FontContext);
 
   const datas = currentData?.data;
 
@@ -35,7 +33,7 @@ export default CardsLists;
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 35,
+    paddingHorizontal: 20,
     display: "flex",
     flexDirection: "column",
     marginTop: 35,

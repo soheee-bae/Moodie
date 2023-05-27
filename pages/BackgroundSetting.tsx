@@ -5,10 +5,9 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 import BasicTopnav from "../components/BasicNav";
 import BackgroundList from "../components/BackgroundList";
-
+import CardsItem from "../components/CardsItem";
 import ThemeContext from "../contexts/ThemeContext";
 import { theme } from "../styles/theme";
-import CardsItem from "../components/CardsItem";
 
 interface BackgroundSettingProps {
   navigation: any;
@@ -63,7 +62,6 @@ const BackgroundSetting = (props: BackgroundSettingProps) => {
       />
 
       <View style={styles(background).preview}>
-        {/* <BackgroundPreview /> */}
         <CardsItem data={previewData} />
       </View>
       <View style={styles(background).backgroundList}>

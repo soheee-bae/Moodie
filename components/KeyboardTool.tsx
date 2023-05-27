@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { KeyboardAvoidingView, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { IconButton } from "@react-native-material/core";
@@ -9,6 +9,7 @@ import getNextAlign from "../helper/getNextAlign";
 import getDates from "../helper/getDates";
 import HightlightModal from "./HighlightModal";
 import ImagePickerComp from "./ImagePicker";
+import ThemeContext from "../contexts/ThemeContext";
 
 interface KeyboardToolProps {
   alignment: KeyboardAlignData;
@@ -33,6 +34,7 @@ const KeyboardTool = (props: KeyboardToolProps) => {
   } = props;
 
   const { hour, minute, ampm } = getDates(new Date());
+  const { background } = useContext(ThemeContext);
 
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.keyboardTool}>
@@ -50,13 +52,13 @@ const KeyboardTool = (props: KeyboardToolProps) => {
           />
         }
         onPress={() => setContent(`${content} ${hour}:${minute} ${ampm}`)}
-        color={theme.colors.background}
+        color={background}
       />
       {(content === "" || !content) && (
         <IconButton
           icon={alignment.icon}
           onPress={() => setAlignment(getNextAlign(alignment))}
-          color={theme.colors.background}
+          color={background}
         />
       )}
     </KeyboardAvoidingView>

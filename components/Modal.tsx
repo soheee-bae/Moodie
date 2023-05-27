@@ -1,9 +1,10 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useContext, useState } from "react";
 import { StyleSheet, View, Modal, Pressable } from "react-native";
 import { IconButton } from "@react-native-material/core";
 import { Entypo } from "@expo/vector-icons";
 
 import { theme } from "../styles/theme";
+import ThemeContext from "../contexts/ThemeContext";
 
 interface ModalCompProps {
   onPress: () => void;
@@ -15,6 +16,8 @@ interface ModalCompProps {
 const ModalComp = (props: ModalCompProps) => {
   const { onPress, onCancel, content, trigger } = props;
   const [modalVisible, setModalVisible] = useState(false);
+
+  const { background } = useContext(ThemeContext);
 
   const handleLeave = () => {
     setModalVisible(!modalVisible);
@@ -53,7 +56,7 @@ const ModalComp = (props: ModalCompProps) => {
                     />
                   }
                   onPress={handleCancel}
-                  color={theme.colors.background}
+                  color={background}
                 />
                 <IconButton
                   icon={
@@ -64,7 +67,7 @@ const ModalComp = (props: ModalCompProps) => {
                     />
                   }
                   onPress={handleLeave}
-                  color={theme.colors.background}
+                  color={background}
                 />
               </View>
             </View>

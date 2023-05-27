@@ -15,7 +15,6 @@ const CardsItem = (props: CardsListsProps) => {
   const { data } = props;
   const { fontStyle, fontSizePx } = useContext(FontContext);
 
-  console.log(data);
   return (
     <View style={styles.content}>
       <View style={styles.header}>

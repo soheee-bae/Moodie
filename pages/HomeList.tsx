@@ -3,15 +3,15 @@ import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Feather, Ionicons } from "@expo/vector-icons";
 
+import HomeContent from "../components/HomeContent";
+import DataContext from "../contexts/DataContext";
+import CardsLists from "../components/CardsLists";
 import BasicNav from "../components/BasicNav";
 import AddButton from "../components/AddButton";
 import ViewContext from "../contexts/ViewContext";
 import ThemeContext from "../contexts/ThemeContext";
 
 import { theme } from "../styles/theme";
-import HomeContent from "../components/HomeContent";
-import DataContext from "../contexts/DataContext";
-import CardsLists from "../components/CardsLists";
 
 interface HomeListProps {
   navigation: any;

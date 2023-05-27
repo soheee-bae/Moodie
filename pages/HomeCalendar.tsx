@@ -1,22 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Feather, MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 
+import Calendar from "../components/Calendar";
+import HomeContent from "../components/HomeContent";
 import BasicNav from "../components/BasicNav";
 import AddButton from "../components/AddButton";
 import ViewContext from "../contexts/ViewContext";
 import ThemeContext from "../contexts/ThemeContext";
+import DataContext from "../contexts/DataContext";
 
 import { theme } from "../styles/theme";
-import Calendar from "../components/Calendar";
-import { FullDataType, getAllDatas } from "../api/getAllDatas";
-import { getSortedDatasbyDate } from "../helper/getSortedDatasbyDate";
-import EmptyPlaceholder from "../components/EmptyPlaceholder";
-import LoadingIndicator from "../components/LoadingIndicator";
-import { DataType } from "../hooks/uploadData";
-import HomeContent from "../components/HomeContent";
-import DataContext from "../contexts/DataContext";
 
 interface HomeCalendarProps {
   navigation: any;
@@ -27,13 +22,8 @@ const HomeCalendar = (props: HomeCalendarProps) => {
   const insets = useSafeAreaInsets();
   const { setView } = useContext(ViewContext);
   const { background } = useContext(ThemeContext);
-  const {
-    datas,
-    currentData,
-    isLoading,
-    currentDate,
-    setCurrentDate,
-  } = useContext(DataContext);
+  const { datas, currentData, isLoading, currentDate, setCurrentDate } =
+    useContext(DataContext);
 
   return (
     <View
