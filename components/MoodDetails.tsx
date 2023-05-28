@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { StyleSheet, Image, Text, ScrollView, View } from "react-native";
+import { StyleSheet, Image, Text, View } from "react-native";
 
 import { Moods } from "../datas/moods";
 import HighlightIcon from "./HighlightIcon";
@@ -31,7 +31,7 @@ const MoodDetails = (props: MoodDetailsProps) => {
       </View>
       <View style={styles(textAlign, fontStyle, fontSizePx).header}>
         <Image
-          source={Moods[moodData.mood || 1]?.file}
+          source={Moods[moodData.mood - 1]?.file}
           style={styles(textAlign, fontStyle, fontSizePx).mood}
         />
         <View style={styles(textAlign, fontStyle, fontSizePx).headerContent}>

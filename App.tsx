@@ -25,6 +25,7 @@ import Details from "./pages/Details";
 
 import { RootStackParamList } from "./datas/rootType";
 import { DataContextProvider } from "./contexts/DataContext";
+import EditMood from "./pages/EditMood";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
@@ -84,6 +85,7 @@ export default function App() {
                           component={FontSetting}
                         />
                         <Stack.Screen name="Details" component={Details} />
+                        <Stack.Screen name="EditMood" component={EditMood} />
                       </Tab.Navigator>
                     )}
                   </Stack.Screen>

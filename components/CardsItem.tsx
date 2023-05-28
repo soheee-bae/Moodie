@@ -18,7 +18,7 @@ const CardsItem = (props: CardsListsProps) => {
   return (
     <View style={styles.content}>
       <View style={styles.header}>
-        <Image source={Moods[data?.mood]?.file} style={styles.mood} />
+        <Image source={Moods[data?.mood - 1]?.file} style={styles.mood} />
         <View style={styles.headerInner}>
           <View style={styles.date}>
             <Text

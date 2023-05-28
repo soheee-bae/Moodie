@@ -17,13 +17,15 @@ import { RootStackParamList } from "../datas/rootType";
 import { keyboardAlign } from "../datas/keyboardTools";
 import { uploadData } from "../hooks/uploadData";
 import { theme } from "../styles/theme";
+import { Moods } from "../datas/moods";
+import { updateData } from "../hooks/updateData";
 import DataContext from "../contexts/DataContext";
 
-const AddMood = ({
+const EditMood = ({
   navigation,
   route,
-}: NativeStackScreenProps<RootStackParamList, "AddMood">) => {
-  const { initialDate, initialMood } = route.params;
+}: NativeStackScreenProps<RootStackParamList, "EditMood">) => {
+  const { moodData } = route.params;
   const insets = useSafeAreaInsets();
 
   const { view } = useContext(ViewContext);
@@ -32,32 +34,34 @@ const AddMood = ({
 
   const viewStr = view === "HomeCalendar" ? "HomeCalendar" : "HomeList";
 
-  const [title, setTitle] = useState(
-    isEng ? initialMood.engLabel : initialMood.korLabel
+  const [title, setTitle] = useState(moodData.title);
+  const [content, setContent] = useState(moodData.content);
+  const [mood, setMood] = useState(Moods[moodData.mood - 1]);
+  const [date, setDate] = useState(new Date(moodData.date));
+  const [img, setImg] = useState(moodData.fileUrl || "");
+  const [alignment, setAlignment] = useState(
+    keyboardAlign.find((align) => align.textAlign === moodData.alignment) ||
+      keyboardAlign[0]
   );
-  const [content, setContent] = useState("");
-  const [mood, setMood] = useState(initialMood);
-  const [date, setDate] = useState(new Date(initialDate));
-  const [img, setImg] = useState("");
-  const [alignment, setAlignment] = useState(keyboardAlign[0]);
-  const [highlight, setHighlight] = useState("E1E1E1");
+  const [highlight, setHighlight] = useState(moodData.highlight);
   const [uploading, setUploading] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const handleUpload = async () => {
+  const handleEdit = async () => {
     const data = {
       date: date.toDateString(),
       mood: mood.value,
       title,
       content,
-      alignment: alignment.textAlign,
+      alignment: alignment?.textAlign,
       highlight,
     };
 
-    const res = await uploadData(data, img, setUploading);
+    const res = await updateData(data, img, setUploading);
 
     if (res !== null && res === "success") {
       setOpen(true);
+
       setTimeout(() => {
         setUploading(false);
         getDatas();
@@ -67,10 +71,17 @@ const AddMood = ({
   };
 
   useEffect(() => {
-    setMood(initialMood);
-    setDate(new Date(initialDate));
-    setTitle(isEng ? initialMood.engLabel : initialMood.korLabel);
-  }, [initialMood]);
+    setImg(moodData.fileUrl || "");
+    setMood(Moods[moodData.mood - 1]);
+    setDate(new Date(moodData.date));
+    setTitle(moodData.title);
+    setContent(moodData.content);
+    setHighlight(moodData.highlight);
+    setAlignment(
+      keyboardAlign.find((align) => align.textAlign === moodData.alignment) ||
+        keyboardAlign[0]
+    );
+  }, [moodData]);
 
   return (
     <View
@@ -79,7 +90,7 @@ const AddMood = ({
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
         },
-        styles(background).addMode,
+        styles(background).editMood,
       ]}>
       {uploading ? (
         <LoadingIndicator />
@@ -92,7 +103,7 @@ const AddMood = ({
             lastIcon={
               <Entypo name="check" size={20} color={theme.colors.lightBlack} />
             }
-            lastPress={handleUpload}
+            lastPress={handleEdit}
           />
 
           <ScrollView style={styles(background).content}>
@@ -108,7 +119,6 @@ const AddMood = ({
               img={img}
               alignment={alignment}
               highlight={highlight}
-              isEditable
             />
           </ScrollView>
           <KeyboardTool
@@ -123,11 +133,8 @@ const AddMood = ({
           />
         </>
       )}
-
       <SnackbarComp
-        label={
-          isEng ? "Data added successfully!" : "기록이 등록되었습니다!"
-        }
+        label={isEng ? "Data updated successfully!" : "기록이 저장되었습니다!"}
         open={open}
         setOpen={setOpen}
       />
@@ -135,11 +142,11 @@ const AddMood = ({
   );
 };
 
-export default AddMood;
+export default EditMood;
 
 const styles = (background: string) =>
   StyleSheet.create({
-    addMode: {
+    editMood: {
       flex: 1,
       backgroundColor: background,
       width: "100%",

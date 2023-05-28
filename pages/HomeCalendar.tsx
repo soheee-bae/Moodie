@@ -56,7 +56,11 @@ const HomeCalendar = (props: HomeCalendarProps) => {
         datas={datas || []}
         currentDate={currentDate}
         setCurrentDate={setCurrentDate}>
-        <Calendar currentData={currentData} currentDate={currentDate} />
+        <Calendar
+          currentData={currentData}
+          currentDate={currentDate}
+          navigation={navigation}
+        />
       </HomeContent>
       <BasicNav
         firstIcon={

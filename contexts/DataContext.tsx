@@ -19,6 +19,7 @@ export type DataContextContent = {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
   currentDate: { year: number; month: number };
   setCurrentDate: Dispatch<SetStateAction<{ year: number; month: number }>>;
+  getDatas: () => Promise<void>;
 };
 
 const DataContext = createContext<DataContextContent>({
@@ -30,6 +31,7 @@ const DataContext = createContext<DataContextContent>({
   setIsLoading: () => undefined,
   currentDate: { year: 0, month: 0 },
   setCurrentDate: () => undefined,
+  getDatas: async () => undefined,
 });
 
 interface DataContextProps {
@@ -45,7 +47,7 @@ function DataContextProvider(props: DataContextProps) {
 
   const [currentDate, setCurrentDate] = useState({
     year: new Date().getFullYear(),
-    month: new Date().getMonth(), //MAy -> 4
+    month: new Date().getMonth(),
   });
 
   async function getDatas() {
@@ -78,6 +80,7 @@ function DataContextProvider(props: DataContextProps) {
         setIsLoading,
         currentDate,
         setCurrentDate,
+        getDatas,
       }}>
       {children}
     </DataContext.Provider>

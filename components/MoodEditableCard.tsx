@@ -6,6 +6,7 @@ import {
   ScrollView,
   TextInput,
   View,
+  Text,
 } from "react-native";
 
 import ThemeContext from "../contexts/ThemeContext";
@@ -17,6 +18,7 @@ import { theme } from "../styles/theme";
 import DateModal from "./DateModal";
 import HighlightIcon from "./HighlightIcon";
 import FontContext from "../contexts/FontContext";
+import getDates from "../helper/getDates";
 
 interface MoodEditableCardProps {
   title: string;
@@ -30,6 +32,7 @@ interface MoodEditableCardProps {
   img: string;
   alignment: KeyboardAlignData;
   highlight: string;
+  isEditable?: boolean;
 }
 
 const MoodEditableCard = (props: MoodEditableCardProps) => {
@@ -45,15 +48,28 @@ const MoodEditableCard = (props: MoodEditableCardProps) => {
     alignment,
     img,
     highlight,
+    isEditable,
   } = props;
   const { isEng } = useContext(ThemeContext);
   const { fontStyle, fontSizePx } = useContext(FontContext);
 
   const textAlign = alignment.textAlign;
+  const { month, year, dates } = getDates(date);
 
   return (
     <ScrollView style={styles(textAlign, fontStyle, fontSizePx).container}>
-      <DateModal onPress={(tempDate) => setDate(tempDate)} date={date} />
+      {isEditable ? (
+        <DateModal onPress={(tempDate) => setDate(tempDate)} date={date} />
+      ) : (
+        <View style={styles(textAlign, fontStyle, fontSizePx).dateContent}>
+          <Text style={styles(textAlign, fontStyle, fontSizePx).monthYear}>
+            {month} {year}
+          </Text>
+          <Text style={styles(textAlign, fontStyle, fontSizePx).date}>
+            {dates}
+          </Text>
+        </View>
+      )}
       <View style={styles(textAlign, fontStyle, fontSizePx).header}>
         <Pressable
           onPress={() => {
@@ -151,5 +167,20 @@ const styles = (
       justifyContent: "center",
       alignItems: "center",
       paddingBottom: 20,
+    },
+    dateContent: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 4,
+    },
+    monthYear: {
+      fontSize: 15,
+      fontWeight: "400",
+      fontFamily: "Inder_400Regular",
+    },
+    date: {
+      fontSize: 23,
+      fontWeight: "bold",
+      fontFamily: "Inder_400Regular",
     },
   });

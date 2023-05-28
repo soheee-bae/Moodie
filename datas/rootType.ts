@@ -11,6 +11,9 @@ export type RootStackParamList = {
     initialDate: number;
     initialMood: MoodsData;
   };
+  EditMood: {
+    moodData: DataType;
+  };
   BackgroundSetting: undefined;
   LanguageSetting: undefined;
   FontSetting: undefined;
