@@ -19,9 +19,9 @@
 
 ---
 
-<img width="33%" alt="HomeCalendar" src="https://github.com/soheee-bae/Moodie/assets/64929428/eaa841b2-d992-45d1-aba3-51df0f6b7d93">
-<img width="33%" alt="HomeCalendar" src="https://github.com/soheee-bae/Moodie/assets/64929428/0c97d17d-66a8-47e6-8b12-d98a6d432a0c">
-<img width="33%" alt="HomeCalendar" src="https://github.com/soheee-bae/Moodie/assets/64929428/3d7e0fba-47ca-4f49-a734-f7a518a160f2">
+<img width="32%" alt="HomeCalendar" src="https://github.com/soheee-bae/Moodie/assets/64929428/eaa841b2-d992-45d1-aba3-51df0f6b7d93">
+<img width="32%" alt="HomeCalendar" src="https://github.com/soheee-bae/Moodie/assets/64929428/0c97d17d-66a8-47e6-8b12-d98a6d432a0c">
+<img width="32%" alt="HomeCalendar" src="https://github.com/soheee-bae/Moodie/assets/64929428/3d7e0fba-47ca-4f49-a734-f7a518a160f2">
 
 
 <img width="33%" alt="HomeCalendar" src="https://github.com/soheee-bae/Moodie/assets/64929428/32a20ce7-b468-4489-8287-b0150fa458d7">
