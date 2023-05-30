@@ -16,3 +16,20 @@
 - FE : React-Native, Expo, TypeScript, CSS
 - BE & DB : Firebase Storage, Firebase Realtime database
 - Others : expo-google-fonts, react-native-community, react-navigation
+
+---
+
+<img width="33%" alt="HomeCalendar" src="https://github.com/soheee-bae/Moodie/assets/64929428/eaa841b2-d992-45d1-aba3-51df0f6b7d93">
+<img width="33%" alt="HomeCalendar" src="https://github.com/soheee-bae/Moodie/assets/64929428/0c97d17d-66a8-47e6-8b12-d98a6d432a0c">
+<img width="33%" alt="HomeCalendar" src="https://github.com/soheee-bae/Moodie/assets/64929428/3d7e0fba-47ca-4f49-a734-f7a518a160f2">
+
+
+<img width="33%" alt="HomeCalendar" src="https://github.com/soheee-bae/Moodie/assets/64929428/32a20ce7-b468-4489-8287-b0150fa458d7">
+<img width="33%" alt="HomeCalendar" src="https://github.com/soheee-bae/Moodie/assets/64929428/a3e41258-71f0-4258-a33e-64ea1ab3daa6">
+<img width="33%" alt="HomeCalendar" src="https://github.com/soheee-bae/Moodie/assets/64929428/3f9daf5c-b0cb-4682-bda4-6d049ef77801">
+
+
+<img width="33%" alt="HomeCalendar" src="https://github.com/soheee-bae/Moodie/assets/64929428/91236d29-23c8-4532-afe2-8fbc3fb761cd">
+<img width="33%" alt="HomeCalendar" src="https://github.com/soheee-bae/Moodie/assets/64929428/d41ef1f4-c15b-4bf9-8918-d085cac73003">
+<img width="33%" alt="HomeCalendar" src="https://github.com/soheee-bae/Moodie/assets/64929428/9f03ab87-1a79-4655-aecc-db0b535a1208">
+
