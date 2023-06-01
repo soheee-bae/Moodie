@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import React, { useContext, useRef, useEffect } from "react";
+import { StyleSheet, View, Text, Animated } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import BasicNav from "../components/BasicNav";
@@ -24,7 +24,7 @@ const AddCover = (props: AddCoverProps) => {
   const text = isEng ? "How was your day?" : "오늘 하루는 어땠나요?";
 
   return (
-    <View
+    <Animated.View
       style={[
         {
           paddingTop: insets.top,
@@ -50,7 +50,7 @@ const AddCover = (props: AddCoverProps) => {
       <BasicNav
         content={<AddButton onPress={() => navigation.navigate(view)} />}
       />
-    </View>
+    </Animated.View>
   );
 };
 

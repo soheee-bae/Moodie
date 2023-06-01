@@ -24,6 +24,7 @@ const HightlightModal = (props: HightlightModalProps) => {
         const isSelected = color === tempColor;
         return (
           <Pressable
+            key={color}
             onPress={() => setTempColor(color)}
             style={[
               styles.highlight,

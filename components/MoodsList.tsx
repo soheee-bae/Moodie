@@ -19,6 +19,7 @@ const MoodsList = (props: MoodsListProps) => {
       {Moods.map((mood) => (
         <TouchableWithoutFeedback
           id={mood.engLabel}
+          key={mood.engLabel}
           onPress={(event: GestureResponderEvent) => {
             event.persist();
             navigation.navigate("AddMood", {

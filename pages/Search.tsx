@@ -93,7 +93,7 @@ const Search = (props: SearchProps) => {
         ) : (
           <ScrollView>
             {dataToDisplay.map((data: DataType) => (
-              <CardsItem data={data} />
+              <CardsItem data={data} key={data.name} />
             ))}
           </ScrollView>
         )}

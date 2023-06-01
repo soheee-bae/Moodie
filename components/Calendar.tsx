@@ -32,7 +32,7 @@ const Calendar = (props: CalendarProps) => {
   return (
     <View style={styles.container}>
       {updatedData.map((data, index) => (
-        <View style={styles.content}>
+        <View style={styles.content} key={index}>
           <Text style={styles.num}>{index + 1}</Text>
           {data ? (
             <Pressable

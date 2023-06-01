@@ -24,7 +24,7 @@ const FontPreview = () => {
           <Text style={styles(fontSizePx, fontStyle).textTitle}>
             {isEng ? "Happy!" : "행복해!"}
           </Text>
-          <HighlightIcon color={highlightColor} width={125} height={25} />
+          <HighlightIcon color={`#${highlightColor}`} width={125} height={25} />
         </View>
         <Text style={styles(fontSizePx, fontStyle).contentText}>
           {contentText}

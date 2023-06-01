@@ -23,6 +23,7 @@ const CardsLists = (props: CardsListsProps) => {
       <ScrollView style={styles.container}>
         {datas?.map((data: DataType) => (
           <Pressable
+            key={data.name}
             onPress={(event) => {
               event.persist();
               navigation.navigate("Details", {

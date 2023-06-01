@@ -23,6 +23,7 @@ const BackgroundList = () => {
         return (
           <TouchableWithoutFeedback
             id={color}
+            key={color}
             onPress={() => {
               setBackground(color);
             }}>

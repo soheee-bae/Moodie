@@ -66,7 +66,7 @@ const MonthYearModal = (props: MonthYearModalProps) => {
   const content = (
     <View style={styles.container}>
       {monthYear.map((date) => (
-        <View style={styles.content}>
+        <View style={styles.content} key={date.label}>
           <Text>{date.title}</Text>
           <View style={styles.inner}>
             <IconButton
