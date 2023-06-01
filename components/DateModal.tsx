@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { ReactNode, useContext, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
@@ -26,6 +26,7 @@ const DateModal = (props: DateModalProps) => {
       onChange={(_event, selectedDate) => {
         setTempDate(selectedDate || new Date());
       }}
+      style={{ maxWidth: "90%" }}
     />
   );
 

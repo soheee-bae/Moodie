@@ -70,6 +70,10 @@ const AddMood = ({
     setMood(initialMood);
     setDate(new Date(initialDate));
     setTitle(isEng ? initialMood.engLabel : initialMood.korLabel);
+    setContent("");
+    setImg("");
+    setAlignment(keyboardAlign[0]);
+    setHighlight("E1E1E1");
   }, [initialMood]);
 
   return (
@@ -125,9 +129,7 @@ const AddMood = ({
       )}
 
       <SnackbarComp
-        label={
-          isEng ? "Data added successfully!" : "기록이 등록되었습니다!"
-        }
+        label={isEng ? "Data added successfully!" : "기록이 등록되었습니다!"}
         open={open}
         setOpen={setOpen}
       />

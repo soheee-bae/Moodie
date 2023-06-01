@@ -6,10 +6,12 @@ import { IconButton } from "@react-native-material/core";
 import LoadingIndicator from "./LoadingIndicator";
 import EmptyPlaceholder from "./EmptyPlaceholder";
 import { FullDataType } from "../api/getAllDatas";
-import FontContext from "../contexts/FontContext";
-import { convertMonth } from "../helper/getDates";
+
 import { theme } from "../styles/theme";
 import ThemeContext from "../contexts/ThemeContext";
+import MonthYearModal from "./MonthYearModal";
+import FontContext from "../contexts/FontContext";
+import getDates from "../helper/getDates";
 
 interface HomeContentProps {
   isLoading: boolean;
@@ -21,11 +23,11 @@ interface HomeContentProps {
 
 const HomeContent = (props: HomeContentProps) => {
   const { isLoading, datas, currentDate, setCurrentDate, children } = props;
-  const { fontStyle, fontSizePx } = useContext(FontContext);
+  const { year, month } = getDates(
+    new Date(currentDate.year, currentDate.month)
+  );
   const { background } = useContext(ThemeContext);
-
-  const month = convertMonth(currentDate.month);
-  const year = currentDate.year;
+  const { fontStyle, fontSizePx } = useContext(FontContext);
 
   const prevMonth = () => {
     setCurrentDate({
@@ -41,6 +43,24 @@ const HomeContent = (props: HomeContentProps) => {
     });
   };
 
+  const onDatePress = (tempDate: { year: number; month: number }) => {
+    const newDate = {
+      year: tempDate.year,
+      month: tempDate.month,
+    };
+    setCurrentDate(newDate);
+  };
+
+  const trigger = (
+    <View style={styles.headerDate}>
+      <Text style={{ fontSize: fontSizePx, fontFamily: fontStyle }}>
+        {month.toUpperCase()}
+      </Text>
+      <Text style={{ fontSize: fontSizePx, fontFamily: fontStyle }}>
+        {year}
+      </Text>
+    </View>
+  );
   return (
     <View style={styles.root}>
       {isLoading ? (
@@ -61,14 +81,11 @@ const HomeContent = (props: HomeContentProps) => {
               onPress={prevMonth}
               color={background}
             />
-            <View style={styles.headerDate}>
-              <Text style={{ fontSize: fontSizePx, fontFamily: fontStyle }}>
-                {month.toUpperCase()}
-              </Text>
-              <Text style={{ fontSize: fontSizePx, fontFamily: fontStyle }}>
-                {year}
-              </Text>
-            </View>
+            <MonthYearModal
+              onPress={onDatePress}
+              date={new Date(currentDate.year, currentDate.month)}
+              trigger={trigger}
+            />
             <IconButton
               icon={
                 <MaterialIcons
